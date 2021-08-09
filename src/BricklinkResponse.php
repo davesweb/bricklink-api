@@ -58,7 +58,7 @@ class BricklinkResponse
     {
         return $this->data;
     }
-    
+
     public function getStatusCode(): int
     {
         return $this->statusCode;

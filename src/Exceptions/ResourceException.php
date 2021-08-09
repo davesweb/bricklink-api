@@ -2,8 +2,8 @@
 
 namespace Davesweb\BrinklinkApi\Exceptions;
 
-use Davesweb\BrinklinkApi\BricklinkResponse;
 use PHPUnit\Framework\Exception;
+use Davesweb\BrinklinkApi\BricklinkResponse;
 
 class ResourceException extends Exception
 {

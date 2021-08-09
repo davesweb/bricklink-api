@@ -2,13 +2,13 @@
 
 namespace Davesweb\BrinklinkApi;
 
-use Davesweb\BrinklinkApi\Exceptions\ResourceException;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 use GuzzleHttp\Exception\GuzzleException;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\Exceptions\ResourceException;
 use Davesweb\BrinklinkApi\Exceptions\ConnectionException;
 
 class Bricklink implements BricklinkGateway
@@ -46,11 +46,11 @@ class Bricklink implements BricklinkGateway
             $response = $this->client->request($method, $uri, $options);
 
             $bricklinkResponse = BricklinkResponse::fromResponse($response);
-    
-            if (!$bricklinkResponse->isSuccessful() && $bricklinkResponse->getStatusCode() !== 404) {
+
+            if (!$bricklinkResponse->isSuccessful() && 404 !== $bricklinkResponse->getStatusCode()) {
                 throw ResourceException::fromResponse($bricklinkResponse);
             }
-            
+
             return $bricklinkResponse;
         } catch (GuzzleException $e) {
             throw ConnectionException::guzzleError($e);

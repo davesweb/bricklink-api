@@ -9,8 +9,8 @@ class CategoryTransformer extends BaseTransformer
     public static string $dto = Category::class;
 
     protected static array $toObject = [
-        'category_id' => 'categoryId',
+        'category_id'   => 'categoryId',
         'category_name' => 'categoryName',
-        'parent_id' => 'parentId',
+        'parent_id'     => 'parentId',
     ];
 }

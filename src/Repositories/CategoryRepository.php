@@ -2,7 +2,6 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
-use Davesweb\BrinklinkApi\Exceptions\ResourceException;
 use Davesweb\BrinklinkApi\ValueObjects\Category;
 use Davesweb\BrinklinkApi\Transformers\CategoryTransformer;
 
@@ -24,14 +23,12 @@ class CategoryRepository extends BaseRepository
     public function find(int $id): ?Category
     {
         $response = $this->gateway->get($this->uri('categories/{id}', ['id' => $id]));
-    
-        if ($response->getStatusCode() === 404) {
+
+        if (404 === $response->getStatusCode()) {
             return null;
         }
 
         /** @var Category $category */
-        $category = CategoryTransformer::toObject($response->getData());
-        
-        return $category;
+        return CategoryTransformer::toObject($response->getData());
     }
 }
