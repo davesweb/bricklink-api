@@ -9,5 +9,6 @@ class Color
         public ?string $colorName = null,
         public ?string $colorCode = null,
         public ?string $colorType = null,
-    ){}
+    ) {
+    }
 }

@@ -8,5 +8,6 @@ class Category
         public ?int $categoryId = null,
         public ?string $categoryName = null,
         public ?int $parentId = null,
-    ){}
+    ) {
+    }
 }
