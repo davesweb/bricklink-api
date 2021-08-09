@@ -41,3 +41,8 @@ use the repositories for easier data manipulation.
 
 # Advanced usage
 1. Custom client or Handlerstack
+
+# Tests
+
+To run the test suite, run `composer test`. Tests are created using PHPUnit, so you may use PHPUnit and it's options
+directly to run the tests.

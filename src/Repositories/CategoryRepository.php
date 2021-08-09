@@ -8,6 +8,7 @@ class CategoryRepository extends BaseRepository
 {
     public function index(): iterable
     {
+        return [];
     }
 
     public function find(int $id): ?Category
