@@ -13,12 +13,28 @@ class BricklinkResponse
 
     private array|stdClass $body;
 
+    private array|stdClass $data;
+
     public static function fromResponse(ResponseInterface $response, bool $asObject = false): static
     {
         $self = new static();
 
-        $self->meta = (array) $response->getBody()->getMetadata();
-        $self->body = json_decode($response->getBody()->getContents(), !$asObject);
+        $self->body       = json_decode($response->getBody()->getContents(), !$asObject);
+        $self->data       = $asObject ? $self->body->data : $self->body['data'];
+        $self->meta       = $asObject ? $self->body->meta : $self->body['meta'];
+        $self->statusCode = $asObject ? (int) $self->meta->code : (int) $self->meta['code'];
+
+        return $self;
+    }
+
+    public static function test(int $statusCode, array $data, array $meta = []): static
+    {
+        $self = new static();
+
+        $self->body       = [];
+        $self->statusCode = $statusCode;
+        $self->data       = $data;
+        $self->meta       = $meta;
 
         return $self;
     }
@@ -36,5 +52,15 @@ class BricklinkResponse
     public function getMeta(): array|stdClass
     {
         return $this->meta;
+    }
+
+    public function getData(): array|stdClass
+    {
+        return $this->data;
+    }
+    
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
     }
 }
