@@ -20,5 +20,6 @@ class Item
         public ?string $description = null,
         public ?bool $isObsolete = null,
         public ?string $languageCode = null,
-    ) {}
+    ) {
+    }
 }
