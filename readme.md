@@ -1,8 +1,14 @@
-# Installation
+# Bricklink API
+
+A PHP wrapper for the Bricklink API.
+
+## Installation
 
 `composer require davesweb/bricklink-api`
 
-# Usage
+## Usage
+
+### Authentication
 
 First, create a config object with your secrets and tokens you got from Bricklink.
 
@@ -12,8 +18,6 @@ First, create a config object with your secrets and tokens you got from Bricklin
 use Davesweb\BrinklinkApi\BricklinkConfig;
 
 $config = new BricklinkConfig('consumerKey', 'consumerSecret', 'tokenValue', 'tokenSecret');
-
-//...
 ```
 
 Optionally you may pass the API URL as a fifth parameter in case this ever changes, but by default this is set 
@@ -30,19 +34,56 @@ use Davesweb\BrinklinkApi\BricklinkConfig;
 $config = new BricklinkConfig('consumerKey', 'consumerSecret', 'tokenValue', 'tokenSecret');
 
 $gateway = new Bricklink($config);
-
-//...
 ```
 
 You can now call the `request()` method on the gateway object to make direct requests to your shop. However you can also
 use the repositories for easier data manipulation.
 
-# Repositories
+### Repositories
 
-# Advanced usage
+This package provides a set of repositories that mimic the API structure of Bricklink. There are 11 repositories you can use:
+
+- `CategoryRepository`
+- `ColorRepository`
+- `CouponRepository`
+- `FeedbackRepository`
+- `InventoryRepository`
+- `ItemRepository`
+- `MappingRepository`
+- `MemberRepository`
+- `NotificationRepository`
+- `OrderRepository`
+- `SettingRepository`
+
+Each repository requires a `Gateway` object to connect to Bricklink:
+
+```php
+<?php
+
+use Davesweb\BrinklinkApi\Bricklink;
+use Davesweb\BrinklinkApi\BricklinkConfig;
+use Davesweb\BrinklinkApi\Repositories\ItemRepository;
+
+$config = new BricklinkConfig('consumerKey', 'consumerSecret', 'tokenValue', 'tokenSecret');
+$gateway = new Bricklink($config);
+
+$repository = new ItemRepository($gateway);
+
+$item = $repository->find('3001', 'part');
+
+var_dump($item);
+```
+
+For a detailed documentation of each repository and it's method please see the docs section of the repository (or just look at the code :P, the method signatures are pretty straightforward).
+
+### Advanced usage
 1. Custom client or Handlerstack
 
-# Tests
+## Tests
 
 To run the test suite, run `composer test`. Tests are created using PHPUnit, so you may use PHPUnit and it's options
 directly to run the tests.
+
+## Contributing
+
+When contributing to this project, please make sure PHP CS fixer is run before you create a pull request. You can run CS fixer on the entire project by running `composer cs-fixer`.
