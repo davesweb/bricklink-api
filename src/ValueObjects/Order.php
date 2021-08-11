@@ -33,6 +33,7 @@ class Order
         public ?iterable $items = null,
         public ?iterable $messages = null,
         public ?iterable $problems = null,
+        public ?iterable $feedback = null,
     ) {
     }
 }

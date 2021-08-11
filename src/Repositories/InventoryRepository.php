@@ -3,6 +3,7 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use Davesweb\BrinklinkApi\ValueObjects\Inventory;
+use Davesweb\BrinklinkApi\Transformers\InventoryTransformer;
 
 class InventoryRepository extends BaseRepository
 {
@@ -10,7 +11,7 @@ class InventoryRepository extends BaseRepository
         string|array|null $itemTypes = null,
         string|array|null $statuses = null,
         int|array|null $categoryIds = null,
-        int|array|null $colorIds
+        int|array|null $colorIds = null
     ): iterable {
         $uri = $this->uri('inventories', [], [
             'item_types'  => $this->toParam($itemTypes),
@@ -20,30 +21,52 @@ class InventoryRepository extends BaseRepository
         ]);
 
         $response    = $this->gateway->get($uri);
-        $inventories = [];
+        $values      = [];
 
-        foreach ($response['data'] as $inventory) {
-            $inventories[] = []; // @todo
+        foreach ($response->getData() as $data) {
+            $values[] = InventoryTransformer::toObject($data);
         }
 
-        return $inventories;
+        return $values;
     }
 
-    public function find(int $id): Inventory
+    public function find(int $id): ?Inventory
     {
+        $response = $this->gateway->get($this->uri('inventories/{id}', ['id' => $id]));
+
+        if (!$response->hasData()) {
+            return null;
+        }
+
+        /** @var Inventory $inventory */
+        $inventory = InventoryTransformer::toObject($response->getData());
+
+        return $inventory;
     }
 
     public function store(Inventory $inventory): Inventory
     {
+        $response = $this->gateway->post('inventories', InventoryTransformer::toArray($inventory));
+
+        /** @var Inventory $newInventory */
+        $newInventory = InventoryTransformer::toObject($response->getData());
+
+        return $newInventory;
     }
 
     public function update(Inventory $inventory): Inventory
     {
+        $response = $this->gateway->put($this->uri('inventories/{id}', ['id' => $inventory->inventoryId]), InventoryTransformer::toArray($inventory));
+
+        /** @var Inventory $newInventory */
+        $newInventory = InventoryTransformer::toObject($response->getData());
+
+        return $newInventory;
     }
 
     public function delete(Inventory $inventory): bool
     {
-        $response = $this->gateway->delete($this->uri('inventories/{inventory_id}', ['inventory_id' => $inventory->id]));
+        $response = $this->gateway->delete($this->uri('inventories/{id}', ['id' => $inventory->inventoryId]));
 
         return $response->isSuccessful();
     }

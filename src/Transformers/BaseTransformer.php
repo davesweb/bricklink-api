@@ -47,7 +47,7 @@ class BaseTransformer
         return new (static::$dto)(...$values);
     }
 
-    public function fromObject(object $object): array
+    public static function toArray(object $object): array
     {
         $values = [];
 

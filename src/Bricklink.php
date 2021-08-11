@@ -42,6 +42,12 @@ class Bricklink implements BricklinkGateway
 
     public function request(string $method, string $uri, array $options = []): BricklinkResponse
     {
+        if (count($options) > 0 && !isset($options['body']) && !isset($options['query'])) {
+            $keyName = 'GET' === strtoupper($method) || 'HEAD' === strtoupper($method) ? 'query' : 'body';
+
+            $options = [$keyName => $options];
+        }
+
         try {
             $response = $this->client->request($method, $uri, $options);
 
