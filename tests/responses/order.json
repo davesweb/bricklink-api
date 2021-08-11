@@ -1,0 +1,63 @@
+{
+  "order_id":3905404,
+  "date_ordered":"2013-10-29T17:59:06.373Z",
+  "date_status_changed":"2014-02-26T01:26:55.467Z",
+  "seller_name":"covariance",
+  "store_name":"skbrickshop",
+  "buyer_name":"sklee",
+  "buyer_email":"sklee@fakemail.com",
+  "require_insurance":false,
+  "status":"PENDING",
+  "is_invoiced":true,
+  "remarks":"my remarks",
+  "total_count":1,
+  "unique_count":1,
+  "total_weight":"1.03",
+  "buyer_order_count":2,
+  "is_filed":false,
+  "drive_thru_sent":true,
+  "payment":{
+    "method":"PayPal.com",
+    "currency_code":"EUR",
+    "date_paid":"2014-02-26T01:29:28.147Z",
+    "status":"Sent"
+  },
+  "shipping":{
+    "method_id":17862,
+    "method":"PostBox",
+    "tracking_link":"12323132",
+    "address":{
+      "name":{
+        "full":"Seulki Lee"
+      },
+      "full":"fake address",
+      "country_code":"KR"
+    }
+  },
+  "cost":{
+    "currency_code":"EUR",
+    "subtotal":"10.1210",
+    "grand_total":"13.1210",
+    "etc1":"0.0000",
+    "etc2":"0.0000",
+    "insurance":"0.0000",
+    "shipping":"3.0000",
+    "credit":"0.0000",
+    "coupon":"0.0000",
+    "vat_rate":"19.00",
+    "vat_amount":"2.0949"
+  },
+  "disp_cost":{
+    "currency_code":"EUR",
+    "subtotal":"10.1210",
+    "grand_total":"13.1210",
+    "etc1":"0.0000",
+    "etc2":"0.0000",
+    "insurance":"0.0000",
+    "shipping":"3.0000",
+    "credit":"0.0000",
+    "coupon":"0.0000",
+    "vat_rate":"19.00",
+    "vat_amount":"2.0949"
+  }
+}

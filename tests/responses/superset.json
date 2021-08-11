@@ -1,0 +1,25 @@
+{
+  "color_id":6,
+  "entries": [
+    {
+      "item": {
+        "no":"555-1",
+        "name":"Hospital",
+        "type":"SET",
+        "categoryID":277
+      },
+      "quantity":1,
+      "appears_as":"R"
+    },
+    {
+      "item": {
+        "no":"363-1",
+        "name":"Hospital with Figures",
+        "type":"SET",
+        "categoryID":277
+      },
+      "quantity":1,
+      "appears_as":"R"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "no":"3305-1",
+  "name":"World Team Player",
+  "type":"SET",
+  "image_url":"http://bltest.ubifun.com/SL/3305-1.jpg",
+  "thumbnail_url":"http://bltest.ubifun.com/S/3305-1.gif",
+  "weight":"3.92",
+  "dim_x":"0.00",
+  "dim_y":"0.00",
+  "dim_z":"0.00",
+  "year_released":1998,
+  "is_obsolete":false,
+  "category_id":473
+}

@@ -1,0 +1,21 @@
+{
+  "inventory_id":50133258,
+  "item": {
+    "no":"7644-1",
+    "name":"MX-81 Hypersonic Operations Aircraft",
+    "type":"SET",
+    "categoryID":34
+  },
+  "color_id":0,
+  "quantity":1,
+  "new_or_used":"N",
+  "completeness":"S",
+  "unit_price":"139.9900",
+  "unit_price_final":"139.9900",
+  "disp_unit_price":"139.9900",
+  "disp_unit_price_final":"139.9900",
+  "currency_code":"USD",
+  "disp_currency_code":"USD",
+  "description":"",
+  "remarks":""
+}

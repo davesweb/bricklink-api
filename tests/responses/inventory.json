@@ -1,0 +1,28 @@
+{
+  "inventory_id":50592684,
+  "item": {
+    "no":"bel004",
+    "name":"Belville Accessories - Complete Sprue - Perfume Bottles (same as 6932)",
+    "type":"PART",
+    "categoryID":48
+  },
+  "color_id":5,
+  "quantity":12,
+  "new_or_used":"U",
+  "unit_price":"1.2000",
+  "bind_id":0,
+  "description":"",
+  "remarks":"",
+  "bulk":1,
+  "is_retain":false,
+  "is_stock_room":false,
+  "date_created":"2013-12-18T05:00:00.000Z",
+  "sale_rate":10,
+  "my_cost":"1.0000",
+  "tier_quantity1":10,
+  "tier_price1":"1.0000",
+  "tier_quantity2":20,
+  "tier_price2":"0.8000",
+  "tier_quantity3":0,
+  "tier_price3":"0.0000"
+}
