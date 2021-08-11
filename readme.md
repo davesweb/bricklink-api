@@ -1,6 +1,10 @@
 # Bricklink API
 
-A PHP wrapper for the Bricklink API.
+A PHP SDK for the Bricklink API. This package provides an easy way to authenticate with the Bricklink API, so you can run 
+requests directly against the Bricklink API. This package also provides some repositories for easier and object-oriented 
+communication with the Bricklink API.
+
+This package is still in an Alpha version, not every API call is tested. Use at your own risk for now.
 
 ## Installation
 
