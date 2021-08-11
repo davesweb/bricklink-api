@@ -8,5 +8,7 @@ class AddressTransformer extends BaseTransformer
 {
     public static string $dto = Address::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'name' => ['name', NameTransformer::class],
+    ];
 }

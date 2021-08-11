@@ -63,4 +63,9 @@ class BricklinkResponse
     {
         return $this->statusCode;
     }
+
+    public function hasData(): bool
+    {
+        return count($this->data) > 0;
+    }
 }

@@ -8,5 +8,7 @@ class OrderItemTransformer extends BaseTransformer
 {
     public static string $dto = OrderItem::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'item' => ['item', ItemTransformer::class],
+    ];
 }

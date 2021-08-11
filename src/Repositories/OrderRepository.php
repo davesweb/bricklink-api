@@ -2,6 +2,7 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use Davesweb\BrinklinkApi\Transformers\OrderTransformer;
 use Davesweb\BrinklinkApi\ValueObjects\Order;
 
 class OrderRepository extends BaseRepository
@@ -11,6 +12,21 @@ class OrderRepository extends BaseRepository
 
     public function index(string $direction = self::DIRECTION_IN, array $statuses = [], bool $filed = false): iterable
     {
+        $uri = $this->uri('orders', [], [
+            'direction' => $direction,
+            'status'    => $this->toParam($statuses),
+            'filed'     => $filed ? 'true' : 'false',
+        ]);
+
+        $response = $this->gateway->get($uri);
+        
+        $values = [];
+    
+        foreach ($response->getData() as $data) {
+            $values[] = OrderTransformer::toObject($data);
+        }
+        
+        return $values;
     }
 
     public function find(int $id): ?Order

@@ -8,5 +8,7 @@ class SupersetTransformer extends BaseTransformer
 {
     public static string $dto = Superset::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'entries' => ['entries', 'array', EntryTransformer::class],
+    ];
 }

@@ -8,5 +8,7 @@ class PaymentTransformer extends BaseTransformer
 {
     public static string $dto = Payment::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'date_paid' => ['datePaid', 'datetime'],
+    ];
 }

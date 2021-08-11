@@ -8,5 +8,8 @@ class PriceGuideTransformer extends BaseTransformer
 {
     public static string $dto = PriceGuide::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'item'         => ['item', ItemTransformer::class],
+        'price_detail' => ['priceDetail', 'array', PriceDetailTransformer::class],
+    ];
 }

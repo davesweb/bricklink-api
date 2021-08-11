@@ -8,5 +8,7 @@ class OrderMessageTransformer extends BaseTransformer
 {
     public static string $dto = OrderMessage::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'dateSent' => ['dateSent', 'datetime'],
+    ];
 }

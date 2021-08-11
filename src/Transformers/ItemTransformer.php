@@ -8,5 +8,7 @@ class ItemTransformer extends BaseTransformer
 {
     public static string $dto = Item::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'no' => 'number',
+    ];
 }

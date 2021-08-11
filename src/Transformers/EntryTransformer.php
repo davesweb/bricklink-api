@@ -8,5 +8,7 @@ class EntryTransformer extends BaseTransformer
 {
     public static string $dto = Entry::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'item' => ['item', ItemTransformer::class],
+    ];
 }

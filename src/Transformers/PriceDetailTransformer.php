@@ -8,5 +8,7 @@ class PriceDetailTransformer extends BaseTransformer
 {
     public static string $dto = PriceDetail::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'date_ordered' => ['dateOrdered', 'datetime'],
+    ];
 }

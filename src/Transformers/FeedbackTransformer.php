@@ -8,5 +8,7 @@ class FeedbackTransformer extends BaseTransformer
 {
     public static string $dto = Feedback::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'date_rated' => ['dateRated', 'datetime'],
+    ];
 }

@@ -8,5 +8,7 @@ class SubsetTransformer extends BaseTransformer
 {
     public static string $dto = Subset::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'entries' => ['entries', 'array', EntryTransformer::class],
+    ];
 }

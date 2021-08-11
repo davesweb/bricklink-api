@@ -8,5 +8,7 @@ class NotificationTransformer extends BaseTransformer
 {
     public static string $dto = Notification::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'timestamp' => ['timestamp', 'datetime'],
+    ];
 }

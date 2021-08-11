@@ -24,11 +24,13 @@ class CategoryRepository extends BaseRepository
     {
         $response = $this->gateway->get($this->uri('categories/{id}', ['id' => $id]));
 
-        if (404 === $response->getStatusCode()) {
+        if (!$response->hasData()) {
             return null;
         }
 
         /** @var Category $category */
-        return CategoryTransformer::toObject($response->getData());
+        $category = CategoryTransformer::toObject($response->getData());
+
+        return $category;
     }
 }

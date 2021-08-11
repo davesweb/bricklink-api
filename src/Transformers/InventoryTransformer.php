@@ -8,5 +8,8 @@ class InventoryTransformer extends BaseTransformer
 {
     public static string $dto = Inventory::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'item'         => ['item', ItemTransformer::class],
+        'date_created' => ['date_created', 'datetime'],
+    ];
 }

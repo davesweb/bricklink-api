@@ -8,5 +8,8 @@ class ShippingTransformer extends BaseTransformer
 {
     public static string $dto = Shipping::class;
 
-    protected static array $toObject = [];
+    protected static array $mapping = [
+        'date_shipped' => ['dateShipped', 'datetime'],
+        'address'      => ['address', AddressTransformer::class],
+    ];
 }
