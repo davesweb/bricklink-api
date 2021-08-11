@@ -1,7 +1,7 @@
 {
     "name": "davesweb/bricklink-api",
     "description": "A PHP wrapper around the Bricklink API",
-    "version": "0.0.1",
+    "version": "1.0.0-alpha.1",
     "type": "library",
     "require": {
         "php": "^8.0",
