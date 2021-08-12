@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\Order;
 
 class OrderTransformer extends BaseTransformer
 {
-    public static string $dto = Order::class;
+    public string $dto = Order::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'date_ordered'        => ['dateOrdered', 'datetime'],
         'date_status_changed' => ['dateStatusChanged', 'datetime'],
         'payment'             => ['payment', PaymentTransformer::class],

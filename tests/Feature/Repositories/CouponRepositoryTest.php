@@ -2,12 +2,12 @@
 
 namespace Davesweb\BrinklinkApi\Tests\Feature\Repositories;
 
-use Davesweb\BrinklinkApi\Transformers\CouponTransformer;
 use PHPUnit\Framework\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\ValueObjects\Coupon;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
 use Davesweb\BrinklinkApi\Repositories\CouponRepository;
+use Davesweb\BrinklinkApi\Transformers\CouponTransformer;
 
 /**
  * @internal
@@ -19,7 +19,7 @@ class CouponRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(200, [json_decode(file_get_contents(__DIR__.'/../../responses/coupon.json'), true)]);
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new CouponRepository($gateway);
+        $repository = new CouponRepository($gateway, new CouponTransformer());
 
         $results = $repository->index();
 
@@ -34,7 +34,7 @@ class CouponRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(404, []);
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new CouponRepository($gateway);
+        $repository = new CouponRepository($gateway, new CouponTransformer());
 
         $result = $repository->find(404);
 
@@ -45,7 +45,7 @@ class CouponRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/coupon.json'), true));
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new CouponRepository($gateway);
+        $repository = new CouponRepository($gateway, new CouponTransformer());
 
         $result = $repository->find(1234);
 
@@ -56,7 +56,7 @@ class CouponRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/coupon.json'), true));
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new CouponRepository($gateway);
+        $repository = new CouponRepository($gateway, new CouponTransformer());
 
         $result = $repository->store(new Coupon(couponId: 12345));
 
@@ -67,7 +67,7 @@ class CouponRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/coupon.json'), true));
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new CouponRepository($gateway);
+        $repository = new CouponRepository($gateway, new CouponTransformer());
 
         $result = $repository->update(new Coupon(couponId: 12345));
 
@@ -78,7 +78,7 @@ class CouponRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(200, []);
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new CouponRepository($gateway);
+        $repository = new CouponRepository($gateway, new CouponTransformer());
 
         $result = $repository->delete(new Coupon(couponId: 12345));
 

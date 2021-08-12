@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\Feedback;
 
 class FeedbackTransformer extends BaseTransformer
 {
-    public static string $dto = Feedback::class;
+    public string $dto = Feedback::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'date_rated' => ['dateRated', 'datetime'],
     ];
 }

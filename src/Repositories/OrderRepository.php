@@ -2,7 +2,9 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\uri;
 use Davesweb\BrinklinkApi\ValueObjects\Order;
+use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\OrderTransformer;
 use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 use Davesweb\BrinklinkApi\Transformers\OrderItemTransformer;
@@ -13,9 +15,29 @@ class OrderRepository extends BaseRepository
     public const DIRECTION_IN  = 'in';
     public const DIRECTION_OUT = 'out';
 
+    protected OrderItemTransformer $itemTransformer;
+
+    protected OrderMessageTransformer $messageTransformer;
+
+    protected FeedbackTransformer $feedbackTransformer;
+
+    public function __construct(
+        BricklinkGateway $gateway,
+        OrderTransformer $transformer,
+        OrderItemTransformer $itemTransformer,
+        OrderMessageTransformer $messageTransformer,
+        FeedbackTransformer $feedbackTransformer,
+    ) {
+        parent::__construct($gateway, $transformer);
+
+        $this->itemTransformer     = $itemTransformer;
+        $this->messageTransformer  = $messageTransformer;
+        $this->feedbackTransformer = $feedbackTransformer;
+    }
+
     public function index(string $direction = self::DIRECTION_IN, string|array|null $statuses = null, bool $filed = false): iterable
     {
-        $uri = $this->uri('orders', [], [
+        $uri = uri('orders', [], [
             'direction' => $direction,
             'status'    => $this->toParam($statuses),
             'filed'     => $filed ? 'true' : 'false',
@@ -26,7 +48,7 @@ class OrderRepository extends BaseRepository
         $values = [];
 
         foreach ($response->getData() as $data) {
-            $values[] = OrderTransformer::toObject($data);
+            $values[] = $this->transformer->toObject($data);
         }
 
         return $values;
@@ -34,14 +56,14 @@ class OrderRepository extends BaseRepository
 
     public function find(int $id, bool $withItems = true, bool $withMessages = false, bool $withFeedback = false): ?Order
     {
-        $response = $this->gateway->get($this->uri('orders/{id}', ['id' => $id]));
+        $response = $this->gateway->get(uri('orders/{id}', ['id' => $id]));
 
         if (!$response->hasData()) {
             return null;
         }
 
         /** @var Order $order */
-        $order = OrderTransformer::toObject($response->getData());
+        $order = $this->transformer->toObject($response->getData());
 
         if ($withItems) {
             $order->items = $this->findOrderItems($order);
@@ -60,12 +82,12 @@ class OrderRepository extends BaseRepository
 
     public function findOrderItems(Order $order): iterable
     {
-        $itemsResponse = $this->gateway->get($this->uri('orders/{id}/items', ['id' => $order->orderId]));
+        $itemsResponse = $this->gateway->get(uri('orders/{id}/items', ['id' => $order->orderId]));
 
         $items = [];
 
         foreach ($itemsResponse->getData() as $data) {
-            $items[] = OrderItemTransformer::toObject($data);
+            $items[] = $this->itemTransformer->toObject($data);
         }
 
         return $items;
@@ -73,12 +95,12 @@ class OrderRepository extends BaseRepository
 
     public function findOrderMessages(Order $order): iterable
     {
-        $messagesResponse = $this->gateway->get($this->uri('orders/{id}/messages', ['id' => $order->orderId]));
+        $messagesResponse = $this->gateway->get(uri('orders/{id}/messages', ['id' => $order->orderId]));
 
         $messages = [];
 
         foreach ($messagesResponse->getData() as $data) {
-            $messages[] = OrderMessageTransformer::toObject($data);
+            $messages[] = $this->messageTransformer->toObject($data);
         }
 
         return $messages;
@@ -86,12 +108,12 @@ class OrderRepository extends BaseRepository
 
     public function findOrderFeedback(Order $order): iterable
     {
-        $feedbackResponse = $this->gateway->get($this->uri('orders/{id}/feedback', ['id' => $order->orderId]));
+        $feedbackResponse = $this->gateway->get(uri('orders/{id}/feedback', ['id' => $order->orderId]));
 
         $feedback = [];
 
         foreach ($feedbackResponse->getData() as $data) {
-            $feedback[] = FeedbackTransformer::toObject($data);
+            $feedback[] = $this->feedbackTransformer->toObject($data);
         }
 
         return $feedback;
@@ -100,12 +122,12 @@ class OrderRepository extends BaseRepository
     public function update(Order $order): Order
     {
         $response = $this->gateway->put(
-            $this->uri('orders/{id}', ['id' => $order->orderId]),
-            OrderTransformer::toArray($order)
+            uri('orders/{id}', ['id' => $order->orderId]),
+            $this->transformer->toArray($order)
         );
 
         /** @var Order $updatedOrder */
-        $updatedOrder = OrderTransformer::toObject($response->getData());
+        $updatedOrder = $this->transformer->toObject($response->getData());
 
         return $updatedOrder;
     }
@@ -113,7 +135,7 @@ class OrderRepository extends BaseRepository
     public function updateStatus(Order $order, string $newStatus): bool
     {
         $response = $this->gateway->put(
-            $this->uri('/orders/{id}/status', ['id' => $order->orderId]),
+            uri('/orders/{id}/status', ['id' => $order->orderId]),
             ['field' => 'status', 'value' => $newStatus],
         );
 
@@ -123,7 +145,7 @@ class OrderRepository extends BaseRepository
     public function updatePaymentStatus(Order $order, string $newStatus): bool
     {
         $response = $this->gateway->put(
-            $this->uri('/orders/{id}/status', ['id' => $order->orderId]),
+            uri('/orders/{id}/status', ['id' => $order->orderId]),
             ['field' => 'payment_status', 'value' => $newStatus],
         );
 
@@ -132,7 +154,7 @@ class OrderRepository extends BaseRepository
 
     public function sendDriveThru(Order $order, bool $mailMe = false): bool
     {
-        $uri = $this->uri(
+        $uri = uri(
             '/orders/{id}/drive_thru',
             ['id' => $order->orderId],
             ['mail_me', $mailMe ? 'true' : 'false'],

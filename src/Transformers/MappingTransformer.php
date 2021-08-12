@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\Mapping;
 
 class MappingTransformer extends BaseTransformer
 {
-    public static string $dto = Mapping::class;
+    public string $dto = Mapping::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'item' => ['item', ItemTransformer::class],
     ];
 }

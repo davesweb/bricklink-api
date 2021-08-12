@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\PriceDetail;
 
 class PriceDetailTransformer extends BaseTransformer
 {
-    public static string $dto = PriceDetail::class;
+    public string $dto = PriceDetail::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'date_ordered' => ['dateOrdered', 'datetime'],
     ];
 }

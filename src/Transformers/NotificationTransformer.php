@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\Notification;
 
 class NotificationTransformer extends BaseTransformer
 {
-    public static string $dto = Notification::class;
+    public string $dto = Notification::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'timestamp' => ['timestamp', 'datetime'],
     ];
 }

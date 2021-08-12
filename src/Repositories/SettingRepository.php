@@ -2,11 +2,18 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\uri;
+use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\ValueObjects\ShippingMethod;
 use Davesweb\BrinklinkApi\Transformers\ShippingMethodTransformer;
 
 class SettingRepository extends BaseRepository
 {
+    public function __construct(BricklinkGateway $gateway, ShippingMethodTransformer $transformer)
+    {
+        parent::__construct($gateway, $transformer);
+    }
+
     public function shippingMethods(): iterable
     {
         $response = $this->gateway->get('/settings/shipping_methods');
@@ -14,7 +21,7 @@ class SettingRepository extends BaseRepository
         $values = [];
 
         foreach ($response->getData() as $data) {
-            $values[] = ShippingMethodTransformer::toObject($data);
+            $values[] = $this->transformer->toObject($data);
         }
 
         return $values;
@@ -22,7 +29,7 @@ class SettingRepository extends BaseRepository
 
     public function findShippingMethod(int $id): ?ShippingMethod
     {
-        $uri = $this->uri('/settings/shipping_methods/{id}', ['id' => $id]);
+        $uri = uri('/settings/shipping_methods/{id}', ['id' => $id]);
 
         $response = $this->gateway->get($uri);
 
@@ -31,7 +38,7 @@ class SettingRepository extends BaseRepository
         }
 
         /** @var ShippingMethod $shippingMethod */
-        $shippingMethod = ShippingMethodTransformer::toObject($response->getData());
+        $shippingMethod = $this->transformer->toObject($response->getData());
 
         return $shippingMethod;
     }

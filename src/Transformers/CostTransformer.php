@@ -6,5 +6,5 @@ use Davesweb\BrinklinkApi\ValueObjects\Cost;
 
 class CostTransformer extends BaseTransformer
 {
-    public static string $dto = Cost::class;
+    public string $dto = Cost::class;
 }

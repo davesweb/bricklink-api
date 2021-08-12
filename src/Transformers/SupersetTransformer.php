@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\Superset;
 
 class SupersetTransformer extends BaseTransformer
 {
-    public static string $dto = Superset::class;
+    public string $dto = Superset::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'entries' => ['entries', 'array', EntryTransformer::class],
     ];
 }

@@ -2,8 +2,10 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\uri;
 use Davesweb\BrinklinkApi\ValueObjects\Item;
 use Davesweb\BrinklinkApi\ValueObjects\PriceGuide;
+use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\ItemTransformer;
 use Davesweb\BrinklinkApi\Transformers\SubsetTransformer;
 use Davesweb\BrinklinkApi\Transformers\SupersetTransformer;
@@ -12,9 +14,33 @@ use Davesweb\BrinklinkApi\Transformers\PriceGuideTransformer;
 
 class ItemRepository extends BaseRepository
 {
+    protected SupersetTransformer $supersetTransformer;
+
+    protected SubsetTransformer $subsetTransformer;
+
+    protected PriceGuideTransformer $priceGuideTransformer;
+
+    protected KnownColorTransformer $knownColorTransformer;
+
+    public function __construct(
+        BricklinkGateway $gateway,
+        ItemTransformer $transformer,
+        SupersetTransformer $supersetTransformer,
+        SubsetTransformer $subsetTransformer,
+        PriceGuideTransformer $priceGuideTransformer,
+        KnownColorTransformer $knownColorTransformer,
+    ) {
+        parent::__construct($gateway, $transformer);
+
+        $this->supersetTransformer   = $supersetTransformer;
+        $this->subsetTransformer     = $subsetTransformer;
+        $this->priceGuideTransformer = $priceGuideTransformer;
+        $this->knownColorTransformer = $knownColorTransformer;
+    }
+
     public function find(string $number, string $type = 'part'): ?Item
     {
-        $uri = $this->uri('/items/{type}/{number}', [
+        $uri = uri('/items/{type}/{number}', [
             'type'   => $type,
             'number' => $number,
         ]);
@@ -26,14 +52,14 @@ class ItemRepository extends BaseRepository
         }
 
         /** @var Item $item */
-        $item = ItemTransformer::toObject($response->getData());
+        $item = $this->transformer->toObject($response->getData());
 
         return $item;
     }
 
     public function findItemImage(Item $item, int $colorId = 1): ?Item
     {
-        $uri = $this->uri('/items/{type}/{number}/images/{color_id}', [
+        $uri = uri('/items/{type}/{number}/images/{color_id}', [
             'type'     => $item->type,
             'number'   => $item->number,
             'color_id' => $colorId,
@@ -46,14 +72,14 @@ class ItemRepository extends BaseRepository
         }
 
         /** @var Item $item */
-        $item = ItemTransformer::toObject($response->getData());
+        $item = $this->transformer->toObject($response->getData());
 
         return $item;
     }
 
     public function supersets(string $number, string $type = 'part', ?int $colorId = null): iterable
     {
-        $uri = $this->uri('/items/{type}/{number}/supersets', [
+        $uri = uri('/items/{type}/{number}/supersets', [
             'type'     => $type,
             'number'   => $number,
             'color_id' => $colorId,
@@ -64,7 +90,7 @@ class ItemRepository extends BaseRepository
         $values = [];
 
         foreach ($response->getData() as $data) {
-            $values[] = SupersetTransformer::toObject($data);
+            $values[] = $this->supersetTransformer->toObject($data);
         }
 
         return $values;
@@ -79,7 +105,7 @@ class ItemRepository extends BaseRepository
         ?bool $breakMinifigs = null,
         ?bool $breakSubsets = null,
     ): iterable {
-        $uri = $this->uri('/items/{type}/{number}/subsets', [
+        $uri = uri('/items/{type}/{number}/subsets', [
             'type'   => $type,
             'number' => $number,
         ], [
@@ -95,7 +121,7 @@ class ItemRepository extends BaseRepository
         $values = [];
 
         foreach ($response->getData() as $data) {
-            $values[] = SubsetTransformer::toObject($data);
+            $values[] = $this->subsetTransformer->toObject($data);
         }
 
         return $values;
@@ -112,7 +138,7 @@ class ItemRepository extends BaseRepository
         ?string $currencyCode = null,
         string $vat = 'N',
     ): ?PriceGuide {
-        $uri = $this->uri('/items/{type}/{number}/price', [
+        $uri = uri('/items/{type}/{number}/price', [
             'type'   => $type,
             'number' => $number,
         ], [
@@ -132,14 +158,14 @@ class ItemRepository extends BaseRepository
         }
 
         /** @var PriceGuide $priceGuide */
-        $priceGuide = PriceGuideTransformer::toObject($response->getData());
+        $priceGuide = $this->priceGuideTransformer->toObject($response->getData());
 
         return $priceGuide;
     }
 
     public function knownColors(string $number, string $type = 'part'): iterable
     {
-        $uri = $this->uri('/items/{type}/{number}/colors', [
+        $uri = uri('/items/{type}/{number}/colors', [
             'type'   => $type,
             'number' => $number,
         ]);
@@ -149,7 +175,7 @@ class ItemRepository extends BaseRepository
         $values = [];
 
         foreach ($response->getData() as $data) {
-            $values[] = KnownColorTransformer::toObject($data);
+            $values[] = $this->knownColorTransformer->toObject($data);
         }
 
         return $values;
