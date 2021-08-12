@@ -68,30 +68,30 @@ class BaseTransformer
 
         return $values;
     }
-    
+
     protected function getTransformerObject(string $transformer): BaseTransformer
     {
-        return new $transformer;
+        return new $transformer();
     }
-    
+
     protected function findArrayKeyInMapping(string $property): string
     {
         $key = array_search($property, $this->mapping, true);
-        
-        if ($key !== false) {
+
+        if (false !== $key) {
             return $key;
         }
-        
-        foreach($this->mapping as $key => $value) {
+
+        foreach ($this->mapping as $key => $value) {
             if (!is_array($value)) {
                 continue;
             }
-            
+
             if ($value[0] === $property) {
                 return $key;
             }
         }
-        
+
         return (string) Str::of($property)->snake();
     }
 }
