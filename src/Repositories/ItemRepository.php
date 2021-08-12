@@ -6,6 +6,7 @@ use function Davesweb\uri;
 use Davesweb\BrinklinkApi\ValueObjects\Item;
 use Davesweb\BrinklinkApi\ValueObjects\PriceGuide;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\ItemTransformer;
 use Davesweb\BrinklinkApi\Transformers\SubsetTransformer;
 use Davesweb\BrinklinkApi\Transformers\SupersetTransformer;
@@ -57,6 +58,11 @@ class ItemRepository extends BaseRepository
         return $item;
     }
 
+    public function findOrFail(string $number, string $type = 'part'): Item
+    {
+        return $this->find($number, $type) ?? throw NotFoundException::forId($number);
+    }
+
     public function findItemImage(Item $item, int $colorId = 1): ?Item
     {
         $uri = uri('/items/{type}/{number}/images/{color_id}', [
@@ -75,6 +81,11 @@ class ItemRepository extends BaseRepository
         $item = $this->transformer->toObject($response->getData());
 
         return $item;
+    }
+
+    public function findOrFailItemImage(Item $item, int $colorId = 1): Item
+    {
+        return $this->find($item, $colorId) ?? throw NotFoundException::forId($item->number);
     }
 
     public function supersets(string $number, string $type = 'part', ?int $colorId = null): iterable

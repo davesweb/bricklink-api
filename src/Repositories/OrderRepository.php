@@ -6,6 +6,7 @@ use function Davesweb\uri;
 use function Davesweb\param;
 use Davesweb\BrinklinkApi\ValueObjects\Order;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\OrderTransformer;
 use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 use Davesweb\BrinklinkApi\Transformers\OrderItemTransformer;
@@ -79,6 +80,11 @@ class OrderRepository extends BaseRepository
         }
 
         return $order;
+    }
+
+    public function findOrFail(int $id, bool $withItems = true, bool $withMessages = false, bool $withFeedback = false): Order
+    {
+        return $this->find($id, $withItems, $withMessages, $withFeedback) ?? throw NotFoundException::forId($id);
     }
 
     public function findOrderItems(Order $order): iterable

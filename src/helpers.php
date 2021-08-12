@@ -13,7 +13,7 @@ if (!function_exists('uri')) {
             return $uri;
         }
 
-        return $uri . (false !== stripos($uri, '?') ? '&' : '?') . http_build_query($params);
+        return rtrim($uri, '/') . (false !== stripos($uri, '?') ? '&' : '?') . http_build_query($params);
     }
 }
 

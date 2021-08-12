@@ -5,6 +5,7 @@ namespace Davesweb\BrinklinkApi\Repositories;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\ValueObjects\Color;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\ColorTransformer;
 
 class ColorRepository extends BaseRepository
@@ -39,5 +40,10 @@ class ColorRepository extends BaseRepository
         $color = $this->transformer->toObject($response->getData());
 
         return $color;
+    }
+
+    public function findOrFail(int $id): Color
+    {
+        return $this->find($id) ?? throw NotFoundException::forId($id);
     }
 }

@@ -5,6 +5,7 @@ namespace Davesweb\BrinklinkApi\Repositories;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\ValueObjects\Feedback;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 
 class FeedbackRepository extends BaseRepository
@@ -44,6 +45,11 @@ class FeedbackRepository extends BaseRepository
         $feedback = $this->transformer->toObject($response->getData());
 
         return $feedback;
+    }
+
+    public function findOrFail(int $id): Feedback
+    {
+        return $this->find($id) ?? throw NotFoundException::forId($id);
     }
 
     public function store(Feedback $feedback): Feedback
