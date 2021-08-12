@@ -15,7 +15,7 @@ class BricklinkConfig
         string $consumerSecret,
         string $tokenValue,
         string $tokenSecret,
-        string $baseUri = 'https://api.bricklink.com/api/store/v1/',
+        string $baseUri = 'https://api.bricklink.com/api/store/v1',
     ) {
         $this->consumerKey    = $consumerKey;
         $this->consumerSecret = $consumerSecret;

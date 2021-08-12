@@ -17,7 +17,7 @@ class CouponRepositoryTest extends TestCase
 {
     public function testItReturnsIterableIndex(): void
     {
-        $response   = BricklinkResponse::test(200, [json_decode(file_get_contents(__DIR__.'/../../responses/coupon.json'), true)]);
+        $response   = BricklinkResponse::test(200, [json_decode(file_get_contents(__DIR__ . '/../../responses/coupon.json'), true)]);
         $gateway    = new TestBricklinkGateway($response);
         $repository = new CouponRepository($gateway, new CouponTransformer());
 
@@ -43,7 +43,7 @@ class CouponRepositoryTest extends TestCase
 
     public function testItReturnsACoupon(): void
     {
-        $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/coupon.json'), true));
+        $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__ . '/../../responses/coupon.json'), true));
         $gateway    = new TestBricklinkGateway($response);
         $repository = new CouponRepository($gateway, new CouponTransformer());
 
@@ -54,7 +54,7 @@ class CouponRepositoryTest extends TestCase
 
     public function testItStoresACoupon(): void
     {
-        $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/coupon.json'), true));
+        $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__ . '/../../responses/coupon.json'), true));
         $gateway    = new TestBricklinkGateway($response);
         $repository = new CouponRepository($gateway, new CouponTransformer());
 
@@ -65,7 +65,7 @@ class CouponRepositoryTest extends TestCase
 
     public function testItUpdatesACoupon(): void
     {
-        $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/coupon.json'), true));
+        $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__ . '/../../responses/coupon.json'), true));
         $gateway    = new TestBricklinkGateway($response);
         $repository = new CouponRepository($gateway, new CouponTransformer());
 

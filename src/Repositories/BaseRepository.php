@@ -29,12 +29,12 @@ abstract class BaseRepository
             $value = $values;
         }
 
-        return null !== $paramName ? $paramName.'='.$value : $value;
+        return null !== $paramName ? $paramName . '=' . $value : $value;
     }
 
     private function uri(string $uri, array $replace = [], array $params = []): string
     {
-        $keys = array_map(fn (string $key) => '{'.$key.'}', array_keys($replace));
+        $keys = array_map(fn (string $key) => '{' . $key . '}', array_keys($replace));
 
         $uri = str_replace($keys, array_values($replace), $uri);
 
@@ -42,6 +42,6 @@ abstract class BaseRepository
             return $uri;
         }
 
-        return $uri.'?'.http_build_query($params);
+        return $uri . '?' . http_build_query($params);
     }
 }

@@ -17,7 +17,7 @@ class ColorRepositoryTest extends TestCase
 {
     public function testItReturnsIterableIndex(): void
     {
-        $response   = BricklinkResponse::test(200, [json_decode(file_get_contents(__DIR__.'/../../responses/color.json'), true)]);
+        $response   = BricklinkResponse::test(200, [json_decode(file_get_contents(__DIR__ . '/../../responses/color.json'), true)]);
         $gateway    = new TestBricklinkGateway($response);
         $repository = new ColorRepository($gateway, new ColorTransformer());
 
@@ -43,7 +43,7 @@ class ColorRepositoryTest extends TestCase
 
     public function testItReturnsAColor(): void
     {
-        $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/color.json'), true));
+        $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__ . '/../../responses/color.json'), true));
         $gateway    = new TestBricklinkGateway($response);
         $repository = new ColorRepository($gateway, new ColorTransformer());
 

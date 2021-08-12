@@ -17,7 +17,7 @@ class MappingRepository extends BaseRepository
     public function getElementId(string $number, string $type = 'part', ?int $colorId = null): ?Mapping
     {
         $uri = uri('/item_mapping/{type}/{number}', [
-            'type'   => $type,
+            'type'   => strtoupper($type),
             'number' => $number,
         ], [
             'color_id' => $colorId,

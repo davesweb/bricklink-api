@@ -31,11 +31,11 @@ class BaseTransformer
                     } else {
                         $values[$property] = [];
                         foreach ($value as $subValue) {
-                            $values[$property][] = call_user_func($listTransformer.'::toObject', $subValue);
+                            $values[$property][] = call_user_func([$this->getTransformerObject($listTransformer), 'toObject'], $subValue);
                         }
                     }
                 } else {
-                    $values[$property] = call_user_func($transformer.'::toObject', $valye ?? []);
+                    $values[$property] = call_user_func([$this->getTransformerObject($transformer), 'toObject'], $valye ?? []);
                 }
             } else {
                 $values[$property] = $value;
@@ -52,15 +52,14 @@ class BaseTransformer
         $data = get_object_vars($object);
 
         foreach ($data as $property => $value) {
-            // todo This probably doesn't work correctly with the array values, create custom getter
-            $key = array_search($property, $this->mapping, true) ? array_search($property, $this->mapping, true) : (string) Str::of($property)->snake();
+            $key = $this->findArrayKeyInMapping($property);
 
             if (isset($this->mapping[$key]) && is_array($this->mapping[$key])) {
                 $transformer = $this->mapping[$key][1];
                 if ('datetime' === $transformer) {
                     $values[$key] = $value instanceof DateTime ? $value->format('c') : $value;
                 } else {
-                    $values[$key] = null !== $value ? call_user_func($transformer.'::toArray', $value) : null;
+                    $values[$key] = null !== $value ? call_user_func([$this->getTransformerObject($transformer), 'toArray'], $value) : null;
                 }
             } else {
                 $values[$key] = $value;
@@ -68,5 +67,31 @@ class BaseTransformer
         }
 
         return $values;
+    }
+
+    protected function getTransformerObject(string $transformer): BaseTransformer
+    {
+        return new $transformer();
+    }
+
+    protected function findArrayKeyInMapping(string $property): string
+    {
+        $key = array_search($property, $this->mapping, true);
+
+        if (false !== $key) {
+            return $key;
+        }
+
+        foreach ($this->mapping as $key => $value) {
+            if (!is_array($value)) {
+                continue;
+            }
+
+            if ($value[0] === $property) {
+                return $key;
+            }
+        }
+
+        return (string) Str::of($property)->snake();
     }
 }

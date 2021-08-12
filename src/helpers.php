@@ -5,7 +5,7 @@ namespace Davesweb;
 if (!function_exists('uri')) {
     function uri(string $uri, array $replace = [], array $params = []): string
     {
-        $keys = array_map(fn (string $key) => '{'.$key.'}', array_keys($replace));
+        $keys = array_map(fn (string $key) => '{' . $key . '}', array_keys($replace));
 
         $uri = str_replace($keys, array_values($replace), $uri);
 
@@ -13,6 +13,6 @@ if (!function_exists('uri')) {
             return $uri;
         }
 
-        return $uri.(false !== stripos($uri, '?') ? '&' : '?').http_build_query($params);
+        return $uri . (false !== stripos($uri, '?') ? '&' : '?') . http_build_query($params);
     }
 }
