@@ -3,7 +3,7 @@
 namespace Davesweb\BrinklinkApi\Transformers;
 
 use DateTime;
-use Illuminate\Support\Str;
+use Jawira\CaseConverter\Convert;
 
 class BaseTransformer
 {
@@ -16,7 +16,7 @@ class BaseTransformer
         $values = [];
 
         foreach ($data as $key => $value) {
-            $property = $this->mapping[$key] ?? (string) Str::of($key)->camel();
+            $property = $this->mapping[$key] ?? (string) (new Convert($key))->toCamel();
 
             if (is_array($property)) {
                 $listTransformer = $property[2] ?? null;
@@ -92,6 +92,6 @@ class BaseTransformer
             }
         }
 
-        return (string) Str::of($property)->snake();
+        return (new Convert($property))->toSnake();
     }
 }
