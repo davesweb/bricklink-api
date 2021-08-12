@@ -30,7 +30,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
     
     - name: Syntax check
-      run: vendor/bin/ph-cs-fixer fix --allow-risky=yes -v --dry-run --config=.php-cs-fixer.php --stop-on-violation
+      run: vendor/bin/php-cs-fixer fix --allow-risky=yes -v --dry-run --config=.php-cs-fixer.php --stop-on-violation
     
     - name: Run test suite
-      run: composer test
+      run: vendor/bin/phpunit tests --colors --testdox
