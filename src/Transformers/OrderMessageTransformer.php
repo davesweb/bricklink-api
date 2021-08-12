@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\OrderMessage;
 
 class OrderMessageTransformer extends BaseTransformer
 {
-    public static string $dto = OrderMessage::class;
+    public string $dto = OrderMessage::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'dateSent' => ['dateSent', 'datetime'],
     ];
 }

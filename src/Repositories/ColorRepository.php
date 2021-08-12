@@ -2,11 +2,18 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\uri;
 use Davesweb\BrinklinkApi\ValueObjects\Color;
+use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\ColorTransformer;
 
 class ColorRepository extends BaseRepository
 {
+    public function __construct(BricklinkGateway $gateway, ColorTransformer $transformer)
+    {
+        parent::__construct($gateway, $transformer);
+    }
+
     public function index(): iterable
     {
         $response = $this->gateway->get('colors');
@@ -14,7 +21,7 @@ class ColorRepository extends BaseRepository
         $values = [];
 
         foreach ($response->getData() as $data) {
-            $values[] = ColorTransformer::toObject($data);
+            $values[] = $this->transformer->toObject($data);
         }
 
         return $values;
@@ -22,14 +29,14 @@ class ColorRepository extends BaseRepository
 
     public function find(int $id): ?Color
     {
-        $response = $this->gateway->get($this->uri('colors/{id}', ['id' => $id]));
+        $response = $this->gateway->get(uri('colors/{id}', ['id' => $id]));
 
         if (!$response->hasData()) {
             return null;
         }
 
         /** @var Color $color */
-        $color = ColorTransformer::toObject($response->getData());
+        $color = $this->transformer->toObject($response->getData());
 
         return $color;
     }

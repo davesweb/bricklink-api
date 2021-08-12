@@ -7,18 +7,16 @@ use Illuminate\Support\Str;
 
 class BaseTransformer
 {
-    protected static string $dto;
+    protected string $dto;
 
-    protected static array $mapping = [];
+    protected array $mapping = [];
 
-    protected static string $dateTimeFormat = 'Y-m-d\TH:i:s';
-
-    public static function toObject(array $data): object
+    public function toObject(array $data): object
     {
         $values = [];
 
         foreach ($data as $key => $value) {
-            $property = static::$mapping[$key] ?? (string) Str::of($key)->camel();
+            $property = $this->mapping[$key] ?? (string) Str::of($key)->camel();
 
             if (is_array($property)) {
                 $listTransformer = $property[2] ?? null;
@@ -44,10 +42,10 @@ class BaseTransformer
             }
         }
 
-        return new (static::$dto)(...$values);
+        return new ($this->dto)(...$values);
     }
 
-    public static function toArray(object $object): array
+    public function toArray(object $object): array
     {
         $values = [];
 
@@ -55,14 +53,14 @@ class BaseTransformer
 
         foreach ($data as $property => $value) {
             // todo This probably doesn't work correctly with the array values, create custom getter
-            $key = array_search($property, static::$mapping, true) ? array_search($property, static::$mapping, true) : (string) Str::of($property)->snake();
+            $key = array_search($property, $this->mapping, true) ? array_search($property, $this->mapping, true) : (string) Str::of($property)->snake();
 
-            if (isset(static::$mapping[$key]) && is_array(static::$mapping[$key])) {
-                $transformer = static::$mapping[$key][1];
+            if (isset($this->mapping[$key]) && is_array($this->mapping[$key])) {
+                $transformer = $this->mapping[$key][1];
                 if ('datetime' === $transformer) {
-                    $values[$key] = $value instanceof DateTime ? $value->format(static::$dateTimeFormat) : $value;
+                    $values[$key] = $value instanceof DateTime ? $value->format('c') : $value;
                 } else {
-                    $values[$key] = $value !== null ? call_user_func($transformer.'::toArray', $value) : null;
+                    $values[$key] = null !== $value ? call_user_func($transformer.'::toArray', $value) : null;
                 }
             } else {
                 $values[$key] = $value;

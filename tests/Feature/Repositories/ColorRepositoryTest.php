@@ -7,6 +7,7 @@ use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\ValueObjects\Color;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
 use Davesweb\BrinklinkApi\Repositories\ColorRepository;
+use Davesweb\BrinklinkApi\Transformers\ColorTransformer;
 
 /**
  * @internal
@@ -18,7 +19,7 @@ class ColorRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(200, [json_decode(file_get_contents(__DIR__.'/../../responses/color.json'), true)]);
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new ColorRepository($gateway);
+        $repository = new ColorRepository($gateway, new ColorTransformer());
 
         $results = $repository->index();
 
@@ -33,7 +34,7 @@ class ColorRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(404, []);
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new ColorRepository($gateway);
+        $repository = new ColorRepository($gateway, new ColorTransformer());
 
         $result = $repository->find(404);
 
@@ -44,7 +45,7 @@ class ColorRepositoryTest extends TestCase
     {
         $response   = BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/color.json'), true));
         $gateway    = new TestBricklinkGateway($response);
-        $repository = new ColorRepository($gateway);
+        $repository = new ColorRepository($gateway, new ColorTransformer());
 
         $result = $repository->find(3001);
 

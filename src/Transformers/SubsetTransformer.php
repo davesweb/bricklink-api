@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\Subset;
 
 class SubsetTransformer extends BaseTransformer
 {
-    public static string $dto = Subset::class;
+    public string $dto = Subset::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'entries' => ['entries', 'array', EntryTransformer::class],
     ];
 }

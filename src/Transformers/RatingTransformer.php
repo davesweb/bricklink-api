@@ -6,9 +6,9 @@ use Davesweb\BrinklinkApi\ValueObjects\Rating;
 
 class RatingTransformer extends BaseTransformer
 {
-    public static string $dto = Rating::class;
+    public string $dto = Rating::class;
 
-    protected static array $mapping = [
+    protected array $mapping = [
         'rating' => ['rating', 'array'],
     ];
 }

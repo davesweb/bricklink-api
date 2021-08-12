@@ -6,5 +6,5 @@ use Davesweb\BrinklinkApi\ValueObjects\Name;
 
 class NameTransformer extends BaseTransformer
 {
-    protected static string $dto = Name::class;
+    protected string $dto = Name::class;
 }

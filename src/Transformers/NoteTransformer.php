@@ -6,5 +6,5 @@ use Davesweb\BrinklinkApi\ValueObjects\Note;
 
 class NoteTransformer extends BaseTransformer
 {
-    public static string $dto = Note::class;
+    public string $dto = Note::class;
 }

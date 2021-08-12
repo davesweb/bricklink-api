@@ -6,5 +6,5 @@ use Davesweb\BrinklinkApi\ValueObjects\AppliesTo;
 
 class AppliesToTransformer extends BaseTransformer
 {
-    public static string $dto = AppliesTo::class;
+    public string $dto = AppliesTo::class;
 }

@@ -6,5 +6,5 @@ use Davesweb\BrinklinkApi\ValueObjects\Category;
 
 class CategoryTransformer extends BaseTransformer
 {
-    public static string $dto = Category::class;
+    public string $dto = Category::class;
 }
