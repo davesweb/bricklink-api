@@ -5,6 +5,7 @@ namespace Davesweb\BrinklinkApi\Repositories;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\ValueObjects\Category;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\CategoryTransformer;
 
 class CategoryRepository extends BaseRepository
@@ -39,5 +40,10 @@ class CategoryRepository extends BaseRepository
         $category = $this->transformer->toObject($response->getData());
 
         return $category;
+    }
+
+    public function findOrFail(int $id): Category
+    {
+        return $this->find($id) ?? throw NotFoundException::forId($id);
     }
 }

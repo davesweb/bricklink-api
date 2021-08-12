@@ -6,6 +6,7 @@ use function Davesweb\uri;
 use function Davesweb\param;
 use Davesweb\BrinklinkApi\ValueObjects\Inventory;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\InventoryTransformer;
 
 class InventoryRepository extends BaseRepository
@@ -50,6 +51,11 @@ class InventoryRepository extends BaseRepository
         $inventory = $this->transformer->toObject($response->getData());
 
         return $inventory;
+    }
+
+    public function findOrFail(int $id): Inventory
+    {
+        return $this->find($id) ?? throw NotFoundException::forId($id);
     }
 
     public function store(Inventory $inventory): Inventory

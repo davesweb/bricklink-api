@@ -6,6 +6,7 @@ use function Davesweb\uri;
 use function Davesweb\param;
 use Davesweb\BrinklinkApi\ValueObjects\Coupon;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\CouponTransformer;
 
 class CouponRepository extends BaseRepository
@@ -48,6 +49,11 @@ class CouponRepository extends BaseRepository
         $coupon = $this->transformer->toObject($response->getData());
 
         return $coupon;
+    }
+
+    public function findOrFail(int $id): Coupon
+    {
+        return $this->find($id) ?? throw NotFoundException::forId($id);
     }
 
     public function store(Coupon $coupon): Coupon

@@ -5,6 +5,7 @@ namespace Davesweb\BrinklinkApi\Repositories;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\ValueObjects\ShippingMethod;
+use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\ShippingMethodTransformer;
 
 class SettingRepository extends BaseRepository
@@ -41,5 +42,10 @@ class SettingRepository extends BaseRepository
         $shippingMethod = $this->transformer->toObject($response->getData());
 
         return $shippingMethod;
+    }
+
+    public function findOrFailShippingMethod(int $id): ShippingMethod
+    {
+        return $this->findShippingMethod($id) ?? throw NotFoundException::forId($id);
     }
 }
