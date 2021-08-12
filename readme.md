@@ -97,7 +97,7 @@ When contributing to this project, please make sure PHP CS fixer is run before y
 These features/enhancements will be added in future releases:
 
 - Add `findOrFail` methods to each repository that has a `find` method. These will throw an exception when there is no result instead of returning `NULL`.
-- Change the static methods and properties in the transformers to normal methods and properties and use dependency injection for using them in the repositories. This will allow them to be overwritten by the end user if needed.
+- ~~Change the static methods and properties in the transformers to normal methods and properties and use dependency injection for using them in the repositories. This will allow them to be overwritten by the end user if needed.~~ ✔️
 - Implement own versions for the `Str::snakeCase()` and `Str::camelCase()` methods, so we can remove the dependency on `illuminate/support`. That package adds too much that we don't use.
 
 ## License
