@@ -3,6 +3,7 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use function Davesweb\param;
 use Davesweb\BrinklinkApi\ValueObjects\Order;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\OrderTransformer;
@@ -39,7 +40,7 @@ class OrderRepository extends BaseRepository
     {
         $uri = uri('orders', [], [
             'direction' => $direction,
-            'status'    => $this->toParam($statuses),
+            'status'    => param($statuses),
             'filed'     => $filed ? 'true' : 'false',
         ]);
 

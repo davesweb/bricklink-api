@@ -3,6 +3,7 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use function Davesweb\param;
 use Davesweb\BrinklinkApi\ValueObjects\Coupon;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\CouponTransformer;
@@ -21,7 +22,7 @@ class CouponRepository extends BaseRepository
     {
         $uri = uri('coupons', [], [
             'direction' => $direction,
-            'status'    => $this->toParam($statuses),
+            'status'    => param($statuses),
         ]);
 
         $response = $this->gateway->get($uri);

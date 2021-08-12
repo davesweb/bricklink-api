@@ -3,6 +3,7 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use function Davesweb\param;
 use Davesweb\BrinklinkApi\ValueObjects\Inventory;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\InventoryTransformer;
@@ -21,10 +22,10 @@ class InventoryRepository extends BaseRepository
         int|array|null $colorIds = null
     ): iterable {
         $uri = uri('inventories', [], [
-            'item_types'  => $this->toParam($itemTypes),
-            'status'      => $this->toParam($statuses),
-            'category_id' => $this->toParam($categoryIds),
-            'color_id'    => $this->toParam($colorIds),
+            'item_types'  => param($itemTypes),
+            'status'      => param($statuses),
+            'category_id' => param($categoryIds),
+            'color_id'    => param($colorIds),
         ]);
 
         $response    = $this->gateway->get($uri);
