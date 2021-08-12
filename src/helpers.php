@@ -16,3 +16,20 @@ if (!function_exists('uri')) {
         return $uri . (false !== stripos($uri, '?') ? '&' : '?') . http_build_query($params);
     }
 }
+
+if (!function_exists('param')) {
+    function param(mixed $values, ?string $paramName = null): ?string
+    {
+        if (null === $values) {
+            return null;
+        }
+
+        if (is_array($values)) {
+            $value = implode(',', $values);
+        } else {
+            $value = $values;
+        }
+
+        return null !== $paramName ? $paramName . '=' . $value : $value;
+    }
+}
