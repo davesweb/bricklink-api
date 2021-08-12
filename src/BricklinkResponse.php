@@ -2,6 +2,7 @@
 
 namespace Davesweb\BrinklinkApi;
 
+use Davesweb\BrinklinkApi\Exceptions\ConnectionException;
 use stdClass;
 use Psr\Http\Message\ResponseInterface;
 
@@ -20,10 +21,21 @@ class BricklinkResponse
         $self = new static();
 
         $self->body       = json_decode($response->getBody()->getContents(), !$asObject);
-        $self->data       = $asObject ? $self->body->data : $self->body['data'];
         $self->meta       = $asObject ? $self->body->meta : $self->body['meta'];
         $self->statusCode = $asObject ? (int) $self->meta->code : (int) $self->meta['code'];
-
+    
+        if (!isset($self->body->data) && !isset($self->body['data'])) {
+            throw new ConnectionException(
+                ($asObject ? $self->meta->message : $self->meta['message']) .
+                ' ' .
+                ($asObject ? $self->meta->description : $self->meta['description']),
+                $self->statusCode
+            );
+        }
+        
+        $self->data = $asObject ? $self->body->data : $self->body['data'];
+        
+        
         return $self;
     }
 

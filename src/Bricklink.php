@@ -49,7 +49,7 @@ class Bricklink implements BricklinkGateway
         }
 
         try {
-            $response = $this->client->request($method, $uri, $options);
+            $response = $this->client->request($method, rtrim($this->config->getBaseUri(), '/') . '/' . trim($uri, '/'), $options);
 
             $bricklinkResponse = BricklinkResponse::fromResponse($response);
 
