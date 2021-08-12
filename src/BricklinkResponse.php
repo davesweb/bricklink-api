@@ -26,8 +26,8 @@ class BricklinkResponse
 
         if (!isset($self->body->data) && !isset($self->body['data'])) {
             throw new ConnectionException(
-                ($asObject ? $self->meta->message : $self->meta['message']).
-                ' '.
+                ($asObject ? $self->meta->message : $self->meta['message']) .
+                ' ' .
                 ($asObject ? $self->meta->description : $self->meta['description']),
                 $self->statusCode
             );

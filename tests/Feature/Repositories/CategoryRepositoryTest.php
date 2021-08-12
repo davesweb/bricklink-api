@@ -27,7 +27,7 @@ class CategoryRepositoryTest extends TestCase
 
     public function testItReturnsCategoriesIndex(): void
     {
-        $response   = BricklinkResponse::test(200, [json_decode(file_get_contents(__DIR__.'/../../responses/category.json'), true)]);
+        $response   = BricklinkResponse::test(200, [json_decode(file_get_contents(__DIR__ . '/../../responses/category.json'), true)]);
         $repository = new CategoryRepository(new TestBricklinkGateway($response), new CategoryTransformer());
 
         $results = $repository->index();
@@ -43,7 +43,7 @@ class CategoryRepositoryTest extends TestCase
     {
         $repository = new CategoryRepository(
             new TestBricklinkGateway(
-                BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__.'/../../responses/category.json'), true))
+                BricklinkResponse::test(200, json_decode(file_get_contents(__DIR__ . '/../../responses/category.json'), true))
             ),
             new CategoryTransformer()
         );

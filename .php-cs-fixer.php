@@ -15,4 +15,5 @@ return $config->setRules([
     'ordered_imports'        => ['sort_algorithm' => 'length'],
     'binary_operator_spaces' => ['default' => 'align'],
     'return_assignment'      => false,
+    'concat_space'           => ['spacing' => 'one'],
 ])->setFinder($finder);
