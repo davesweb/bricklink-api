@@ -57,13 +57,12 @@ class BaseTransformer
             // todo This probably doesn't work correctly with the array values, create custom getter
             $key = array_search($property, static::$mapping, true) ? array_search($property, static::$mapping, true) : (string) Str::of($property)->snake();
 
-            if (is_array(static::$mapping[$key])) {
+            if (isset(static::$mapping[$key]) && is_array(static::$mapping[$key])) {
                 $transformer = static::$mapping[$key][1];
-
                 if ('datetime' === $transformer) {
-                    $values[$key] = $value->format(static::$dateTimeFormat);
+                    $values[$key] = $value instanceof DateTime ? $value->format(static::$dateTimeFormat) : $value;
                 } else {
-                    $values[$key] = call_user_func($transformer.'::fromObject', $value);
+                    $values[$key] = $value !== null ? call_user_func($transformer.'::toArray', $value) : null;
                 }
             } else {
                 $values[$key] = $value;

@@ -27,7 +27,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "test": "vendor\\bin\\phpunit tests --colors",
+        "test": "vendor\\bin\\phpunit tests --colors --testdox",
         "cs-fixer": "vendor\\bin\\php-cs-fixer fix --allow-risky=yes"
     }
 }
