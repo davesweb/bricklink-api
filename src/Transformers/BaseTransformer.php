@@ -35,7 +35,7 @@ class BaseTransformer
                         }
                     }
                 } else {
-                    $values[$property] = call_user_func([$this->getTransformerObject($transformer), 'toObject'], $valye ?? []);
+                    $values[$property] = call_user_func([$this->getTransformerObject($transformer), 'toObject'], $value ?? []);
                 }
             } else {
                 $values[$property] = $value;

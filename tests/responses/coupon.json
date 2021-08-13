@@ -1,3 +1,33 @@
 {
-  "coupon_id": 1234
+  "coupon_id": 1234,
+  "date_issued": "2013-10-29T17:59:06.373Z",
+  "date_expire": "2030-10-29T17:59:06.373Z",
+  "seller_name": "seller",
+  "buyer_name": "buyer",
+  "store_name": "store",
+  "status": "O",
+  "remarks": null,
+  "order_id": 12345,
+  "currency_code": "EUR",
+  "disp_currency_code": "EUR",
+  "discount_type": "S",
+  "applies_to": {
+    "type": "E",
+    "item_type": "part",
+    "except_on_sale": false
+  },
+  "discount_amount": "10.00",
+  "disp_discount_amount": "10.00",
+  "discount_rate": 5,
+  "max_discount_amount": 100,
+  "disp_max_discount_amount": 100,
+  "tier_price1": 0,
+  "disp_tier_price1": 0,
+  "tier_discount_rate1": 0,
+  "tier_price2": 0,
+  "disp_tier_price2": 0,
+  "tier_discount_rate2": 0,
+  "tier_price3": 0,
+  "disp_tier_price3": 0,
+  "tier_discount_rate3": 0
 }
