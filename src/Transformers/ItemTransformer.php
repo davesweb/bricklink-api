@@ -9,6 +9,7 @@ class ItemTransformer extends BaseTransformer
     public string $dto = Item::class;
 
     protected array $mapping = [
-        'no' => 'number',
+        'no'         => 'number',
+        'categoryID' => 'categoryId',
     ];
 }

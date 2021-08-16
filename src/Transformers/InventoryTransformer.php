@@ -10,6 +10,6 @@ class InventoryTransformer extends BaseTransformer
 
     protected array $mapping = [
         'item'         => ['item', ItemTransformer::class],
-        'date_created' => ['date_created', 'datetime'],
+        'date_created' => ['dateCreated', 'datetime'],
     ];
 }
