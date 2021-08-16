@@ -1,6 +1,6 @@
 <?php
 
-namespace Davesweb\BrinklinkApi\Tests\Feature\Repositories;
+namespace Davesweb\BrinklinkApi\Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
@@ -14,7 +14,7 @@ use Davesweb\BrinklinkApi\Transformers\ColorTransformer;
  * @internal
  * @coversNothing
  */
-class ColorRepositoryTest extends TestCase
+class ColorTest extends TestCase
 {
     public function testItReturnsIterableIndex(): void
     {

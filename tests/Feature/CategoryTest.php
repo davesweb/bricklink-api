@@ -1,6 +1,6 @@
 <?php
 
-namespace Davesweb\BrinklinkApi\Tests\Feature\Repositories;
+namespace Davesweb\BrinklinkApi\Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
@@ -15,7 +15,7 @@ use Davesweb\BrinklinkApi\Transformers\CategoryTransformer;
  * @small
  * @coversNothing
  */
-class CategoryRepositoryTest extends TestCase
+class CategoryTest extends TestCase
 {
     public function testItReturnsIterableIndex(): void
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Davesweb\BrinklinkApi\Tests\Feature\Repositories;
+namespace Davesweb\BrinklinkApi\Tests\Feature;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +16,7 @@ use Davesweb\BrinklinkApi\Transformers\CouponTransformer;
  * @internal
  * @coversNothing
  */
-class CouponRepositoryTest extends TestCase
+class CouponTest extends TestCase
 {
     public function testItReturnsIterableIndex(): void
     {
