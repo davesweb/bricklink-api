@@ -2,8 +2,8 @@
 
 namespace Davesweb\BrinklinkApi\Tests\Feature;
 
-use PHPUnit\Framework\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
+use Davesweb\BrinklinkApi\Tests\TestCase;
 use Davesweb\BrinklinkApi\ValueObjects\Color;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
@@ -18,7 +18,7 @@ class ColorTest extends TestCase
 {
     public function testItReturnsIterableIndex(): void
     {
-        $data       = $this->getDataArray();
+        $data       = $this->getDataArray('color');
         $response   = BricklinkResponse::test(200, [$data]);
         $gateway    = new TestBricklinkGateway($response);
         $repository = new ColorRepository($gateway, new ColorTransformer());
@@ -58,7 +58,7 @@ class ColorTest extends TestCase
 
     public function testItReturnsAColor(): void
     {
-        $data       = $this->getDataArray();
+        $data       = $this->getDataArray('color');
         $response   = BricklinkResponse::test(200, $data);
         $gateway    = new TestBricklinkGateway($response);
         $repository = new ColorRepository($gateway, new ColorTransformer());
@@ -76,10 +76,5 @@ class ColorTest extends TestCase
         $this->assertEquals($expected['color_name'], $color->colorName);
         $this->assertEquals($expected['color_code'], $color->colorCode);
         $this->assertEquals($expected['color_type'], $color->colorType);
-    }
-
-    protected function getDataArray(): array
-    {
-        return json_decode(file_get_contents(__DIR__ . '/../../responses/color.json'), true);
     }
 }

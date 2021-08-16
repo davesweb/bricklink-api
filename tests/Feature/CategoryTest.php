@@ -2,9 +2,9 @@
 
 namespace Davesweb\BrinklinkApi\Tests\Feature;
 
-use PHPUnit\Framework\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
+use Davesweb\BrinklinkApi\Tests\TestCase;
 use Davesweb\BrinklinkApi\ValueObjects\Category;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Repositories\CategoryRepository;
@@ -28,7 +28,7 @@ class CategoryTest extends TestCase
 
     public function testItReturnsCategoriesIndex(): void
     {
-        $data       = $this->getDataArray();
+        $data       = $this->getDataArray('category');
         $response   = BricklinkResponse::test(200, [$data]);
         $repository = new CategoryRepository(new TestBricklinkGateway($response), new CategoryTransformer());
 
@@ -67,7 +67,7 @@ class CategoryTest extends TestCase
 
     public function testItReturnsACategory(): void
     {
-        $data = $this->getDataArray();
+        $data = $this->getDataArray('category');
 
         $repository = new CategoryRepository(
             new TestBricklinkGateway(BricklinkResponse::test(200, $data)),
@@ -85,10 +85,5 @@ class CategoryTest extends TestCase
         $this->assertEquals($expected['category_id'], $category->categoryId);
         $this->assertEquals($expected['category_name'], $category->categoryName);
         $this->assertEquals($expected['parent_id'], $category->parentId);
-    }
-
-    protected function getDataArray(): array
-    {
-        return json_decode(file_get_contents(__DIR__ . '/../../responses/category.json'), true);
     }
 }

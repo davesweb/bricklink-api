@@ -3,8 +3,8 @@
 namespace Davesweb\BrinklinkApi\Tests\Feature;
 
 use DateTime;
-use PHPUnit\Framework\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
+use Davesweb\BrinklinkApi\Tests\TestCase;
 use Davesweb\BrinklinkApi\ValueObjects\Coupon;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
 use Davesweb\BrinklinkApi\ValueObjects\AppliesTo;
@@ -20,7 +20,7 @@ class CouponTest extends TestCase
 {
     public function testItReturnsIterableIndex(): void
     {
-        $data       = $this->getDataArray();
+        $data       = $this->getDataArray('coupon');
         $response   = BricklinkResponse::test(200, [$data]);
         $gateway    = new TestBricklinkGateway($response);
         $repository = new CouponRepository($gateway, new CouponTransformer());
@@ -59,7 +59,7 @@ class CouponTest extends TestCase
 
     public function testItReturnsACoupon(): void
     {
-        $data       = $this->getDataArray();
+        $data       = $this->getDataArray('coupon');
         $response   = BricklinkResponse::test(200, $data);
         $gateway    = new TestBricklinkGateway($response);
         $repository = new CouponRepository($gateway, new CouponTransformer());
@@ -72,7 +72,7 @@ class CouponTest extends TestCase
 
     public function testItStoresACoupon(): void
     {
-        $data       = $this->getDataArray();
+        $data       = $this->getDataArray('coupon');
         $response   = BricklinkResponse::test(200, $data);
         $gateway    = new TestBricklinkGateway($response);
         $repository = new CouponRepository($gateway, new CouponTransformer());
@@ -85,7 +85,7 @@ class CouponTest extends TestCase
 
     public function testItUpdatesACoupon(): void
     {
-        $data       = $this->getDataArray();
+        $data       = $this->getDataArray('coupon');
         $response   = BricklinkResponse::test(200, $data);
         $gateway    = new TestBricklinkGateway($response);
         $repository = new CouponRepository($gateway, new CouponTransformer());
@@ -138,10 +138,5 @@ class CouponTest extends TestCase
         $this->assertEquals($expected['tier_price3'], $coupon->tierPrice3);
         $this->assertEquals($expected['disp_tier_price3'], $coupon->dispTierPrice3);
         $this->assertEquals($expected['tier_discount_rate3'], $coupon->tierDiscountRate3);
-    }
-
-    protected function getDataArray(): array
-    {
-        return json_decode(file_get_contents(__DIR__ . '/../../responses/coupon.json'), true);
     }
 }
