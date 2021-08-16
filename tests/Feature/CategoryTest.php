@@ -2,9 +2,9 @@
 
 namespace Davesweb\BrinklinkApi\Tests\Feature;
 
+use Davesweb\BrinklinkApi\Tests\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
-use Davesweb\BrinklinkApi\Tests\TestCase;
 use Davesweb\BrinklinkApi\ValueObjects\Category;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Repositories\CategoryRepository;

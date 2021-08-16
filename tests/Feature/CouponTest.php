@@ -3,8 +3,8 @@
 namespace Davesweb\BrinklinkApi\Tests\Feature;
 
 use DateTime;
-use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\Tests\TestCase;
+use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\ValueObjects\Coupon;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
 use Davesweb\BrinklinkApi\ValueObjects\AppliesTo;

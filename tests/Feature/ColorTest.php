@@ -2,8 +2,8 @@
 
 namespace Davesweb\BrinklinkApi\Tests\Feature;
 
-use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\Tests\TestCase;
+use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\ValueObjects\Color;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
