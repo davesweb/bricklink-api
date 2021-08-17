@@ -1,0 +1,8 @@
+{
+  "user_name": "username",
+  "rating": {
+    "COMPLAINT": 0,
+    "PRAISE": 334,
+    "NEUTRAL": 5
+  }
+}

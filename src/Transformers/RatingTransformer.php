@@ -9,6 +9,7 @@ class RatingTransformer extends BaseTransformer
     public string $dto = Rating::class;
 
     protected array $mapping = [
-        'rating' => ['rating', 'array'],
+        'user_name' => 'username',
+        'rating'    => ['rating', 'array'],
     ];
 }

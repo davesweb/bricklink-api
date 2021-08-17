@@ -4,6 +4,7 @@ namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\ValueObjects\Note;
+use Davesweb\BrinklinkApi\ValueObjects\Rating;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\NoteTransformer;
 use Davesweb\BrinklinkApi\Transformers\RatingTransformer;
@@ -19,19 +20,20 @@ class MemberRepository extends BaseRepository
         $this->ratingTransformer = $ratingTransformer;
     }
 
-    public function ratings(string $username): iterable
+    public function ratings(string $username): ?Rating
     {
         $uri = uri('/members/{username}/ratings', ['username' => $username]);
 
         $response = $this->gateway->get($uri);
 
-        $values = [];
-
-        foreach ($response->getData() as $data) {
-            $values[] = $this->ratingTransformer->toObject($data);
+        if (!$response->hasData()) {
+            return null;
         }
 
-        return $values;
+        /** @var Rating $result */
+        $result = $this->ratingTransformer->toObject($response->getData());
+
+        return $result;
     }
 
     public function notes(string $username): iterable
