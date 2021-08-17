@@ -45,7 +45,7 @@ use the repositories for easier data manipulation.
 
 ### Repositories
 
-This package provides a set of repositories that mimic the API structure of Bricklink. There are 11 repositories you can use:
+This package provides a set of repositories that mimic the API structure of Bricklink. There are 14 repositories you can use:
 
 - `CategoryRepository`
 - `ColorRepository`
@@ -57,7 +57,10 @@ This package provides a set of repositories that mimic the API structure of Bric
 - `MemberRepository`
 - `NotificationRepository`
 - `OrderRepository`
+- `PriceGuideRepository`
 - `SettingRepository`
+- `SubsetRepository`
+- `SupersetRepoository`
 
 Each repository requires a `Gateway` object to connect to Bricklink, and a `Transformer` object to transform the raw 
 data into value objects. Some repositories may require multiple transformers because they transform multiple things, 
