@@ -6,6 +6,7 @@ use Davesweb\BrinklinkApi\Tests\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
 use Davesweb\BrinklinkApi\ValueObjects\Item;
 use Davesweb\BrinklinkApi\TestBricklinkGateway;
+use Davesweb\BrinklinkApi\ValueObjects\KnownColor;
 use Davesweb\BrinklinkApi\Repositories\ItemRepository;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\ItemTransformer;
@@ -87,6 +88,22 @@ class ItemTest extends TestCase
         $this->assertItemContent($data, $result);
     }
 
+    public function testItReturnsKnownColors(): void
+    {
+        $data       = $this->getDataArray('known_color');
+        $response   = BricklinkResponse::test(200, [$data]);
+        $gateway    = new TestBricklinkGateway($response);
+        $repository = new ItemRepository($gateway, new ItemTransformer(), new KnownColorTransformer());
+
+        $results = $repository->knownColors(1234);
+
+        $this->assertIsIterable($results);
+        $this->assertGreaterThan(0, count($results));
+
+        $this->assertInstanceOf(KnownColor::class, $results[0]);
+        $this->assertKnownColorContent($data, $results[0]);
+    }
+
     protected function assertItemContent(array $expected, Item $item): void
     {
         $this->assertEquals($expected['no'], $item->number);
@@ -101,5 +118,11 @@ class ItemTest extends TestCase
         $this->assertEquals($expected['year_released'], $item->yearReleased);
         $this->assertEquals($expected['is_obsolete'], $item->isObsolete);
         $this->assertEquals($expected['category_id'], $item->categoryId);
+    }
+
+    protected function assertKnownColorContent(array $expected, KnownColor $item): void
+    {
+        $this->assertEquals($expected['color_id'], $item->colorId);
+        $this->assertEquals($expected['quantity'], $item->quantity);
     }
 }
