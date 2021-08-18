@@ -19,7 +19,7 @@ class Order
         public ?string $status = null,
         public ?bool $isInvoiced = null,
         public ?bool $isFiled = null,
-        public ?bool $sentDriveThru = null,
+        public ?bool $driveThruSent = null,
         public ?string $remarks = null,
         public ?int $totalCount = null,
         public ?int $uniqueCount = null,
