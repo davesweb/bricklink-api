@@ -9,6 +9,7 @@ class SubsetTransformer extends BaseTransformer
     public string $dto = Subset::class;
 
     protected array $mapping = [
-        'entries' => ['entries', 'array', EntryTransformer::class],
+        'match_no' => 'matchNumber',
+        'entries'  => ['entries', 'array', EntryTransformer::class],
     ];
 }
