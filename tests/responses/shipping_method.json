@@ -1,0 +1,9 @@
+{
+  "method_id": 1234,
+  "name": "Letter",
+  "note": "Note",
+  "insurance": false,
+  "is_default": true,
+  "area": "B",
+  "is_available": true
+}
