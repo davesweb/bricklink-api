@@ -8,6 +8,7 @@ class PriceDetail
 {
     public function __construct(
         public ?int $quantity = null,
+        public ?int $qunatity = null,
         public ?float $unitPrice = null,
         public ?bool $shippingAvailable = null,
         public ?string $sellerCountryCode = null,

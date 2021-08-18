@@ -12,6 +12,11 @@
   "unit_quantity":298,
   "total_quantity":359,
   "price_detail": [
-
+    {
+      "quantity": 100,
+      "qunatity": 100,
+      "unit_price": 0.12345,
+      "shipping_available": true
+    }
   ]
 }
