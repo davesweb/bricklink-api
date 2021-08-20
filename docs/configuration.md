@@ -25,3 +25,9 @@ use Davesweb\BrinklinkApi\BricklinkConfig;
 
 $config = new BricklinkConfig('consumerKey', 'consumerSecret', 'tokenValue', 'tokenSecret', 'https://api.bricklink.com/api/store/v1');
 ```
+
+---
+<div style="overflow:auto;">
+    <div style="float: left;">&nsbp;</div>
+    <div style="float: right;">[Gateway](gateway.my) &raquo;</div>
+</div>
