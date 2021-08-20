@@ -27,7 +27,5 @@ $config = new BricklinkConfig('consumerKey', 'consumerSecret', 'tokenValue', 'to
 ```
 
 ---
-<div style="overflow:auto;">
-    <div style="float: left;">&nsbp;</div>
-    <div style="float: right;">[Gateway](gateway.my) &raquo;</div>
-</div>
+
+[Gateway  &raquo;](gateway.my)
