@@ -228,3 +228,10 @@ The mapping options will still work the same as in the default `ColorTransformer
 > If you add your own value objects with the default transformer logic, please keep in mind that the value objects 
 > are created like this: `$object = new ValueObject(...$values);`. This means that each property should be a 
 > parameter in the constructor of your value object, otherwhise you'll get an error like `Unknown named property 'xyz'`.
+>
+> 
+---
+<div style="overflow:auto;">
+    <div style="float: left;"><a href="gateway.html">&laquo; Gateway</a></div>
+    <div style="float: right;"><a href="repositories.html">Repositories &raquo;</a></div>
+</div>

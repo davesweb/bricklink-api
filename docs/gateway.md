@@ -94,3 +94,9 @@ You are off course free to use a custom gateway object altogether. In that case,
 `Davesweb\BrinklinkApi\Contracts\BricklinkGateway` interface and pass that object to the repositories as the gateway 
 object. Make sure this gateway object can connect to and communicate with the Bricklink API and all the repositories 
 will still work the same.
+
+---
+<div style="overflow:auto;">
+    <div style="float: left;"><a href="configuration.html">&laquo; Configuration</a></div>
+    <div style="float: right;"><a href="transformers.html">Transformers &raquo;</a></div>
+</div>
