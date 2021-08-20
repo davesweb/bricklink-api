@@ -109,4 +109,4 @@ These features/enhancements will be added in future releases:
 
 ## License
 
-This package is licensed under the MIT license, which basically means you can do whatever your want with this package. However, if you found this package usefull, please consider buying me a beer or subscribing to premium email support over on [Patreon](https://www.patreon.com/davesweb), it's really appreciated!
+This package is licensed under the MIT license, which basically means you can do whatever your want with this package. However, if you found this package useful, please consider buying me a beer or subscribing to premium email support over on [Patreon](https://www.patreon.com/davesweb), it's really appreciated!
