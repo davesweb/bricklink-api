@@ -29,5 +29,5 @@ $config = new BricklinkConfig('consumerKey', 'consumerSecret', 'tokenValue', 'to
 ---
 <div style="overflow:auto;">
     <div style="float: left;"> </div>
-    <div style="float: right;"><a href="gateway.md">Gateway &raquo;</a></div>
+    <div style="float: right;"><a href="gateway.html">Gateway &raquo;</a></div>
 </div>
