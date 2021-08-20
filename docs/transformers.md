@@ -3,7 +3,7 @@
 Transformers are objects that are used to transform the 'raw' API response data to value objects for easy use in your 
 own code. Each repository requires one or more transformers.
 
-Value objects are very simple objects that only conist of a few properties which hold the data. Their only goal is to 
+Value objects are very simple objects that only consist of a few properties which hold the data. Their only goal is to 
 pass along the data.
 
 ## Default transformers
@@ -162,7 +162,7 @@ property this is mapped to, and the second item is the custom transformer, in th
 
 ### Arrays and custom array types
 
-For simple values that are a simple array of values, you may speicify the mapping as an array in the same way as the 
+For simple values that are a just an array of values, you may specify the mapping as an array in the same way as the 
 `datetime` mapping:
 
 ```php
@@ -199,7 +199,8 @@ class ColorTransformer
 You are off course free to write your own custom transformers. Transformers don't have an interface they have to 
 adhere to, instead they are typehinted directly in the repositories. This is because each repository requires 
 its own transformer with the correct mapping. So if you want to provide your own transformer for the 
-ColorRepository for instance, you'd need to overwrite the `ColorTransformer` and pass along your custom object.
+`ColorRepository` for instance, you'd need to overwrite the `ColorTransformer` and pass along your custom object 
+to the `ColorRepository`.
 
 If you want to provide your own transform logic, which is defined in this package by the `BaseTransformer`, you'd 
 have to add it to each custom implementation, or maybe use a trait in a smart way.
@@ -224,6 +225,6 @@ class MyColorTransformer
 The mapping options will still work the same as in the default `ColorTransformer`. Now you van just pass this new 
 `MyColorTransformer` to the `ColorRepository`.
 
-> If you add you own value objects with the default transformer logic, please keep in mind that the value objects 
+> If you add your own value objects with the default transformer logic, please keep in mind that the value objects 
 > are created like this: `$object = new ValueObject(...$values);`. This means that each property should be a 
 > parameter in the constructor of your value object, otherwhise you'll get an error like `Unknown named property 'xyz'`.

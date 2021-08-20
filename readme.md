@@ -12,6 +12,10 @@ This package is still in an Alpha version, not every API call is tested. Use at 
 
 ## Usage
 
+The following examples are just the basic usage of how to set up this package. Please read the 
+[complete documentation](https://davesweb.github.io/bricklink-api/) for more detailed and advanced examples of how to 
+use this package and how to extend this package.
+
 ### Authentication
 
 First, create a config object with your secrets and tokens you got from Bricklink.
@@ -84,10 +88,10 @@ $color = $repository->find(1);
 var_dump($color);
 ```
 
-For a detailed documentation of each repository and it's method please see the docs section of the repository (or just look at the code :P, the method signatures are pretty straightforward).
+## Documentation
 
-### Advanced usage
-1. Custom client or Handlerstack @todo
+Please read the [documentation](https://davesweb.github.io/bricklink-api/) for more detailed and advanced examples 
+of how to use this package.
 
 ## Tests
 
@@ -100,12 +104,15 @@ To run CS fixer on the entire project, run `composer cs-fixer`.
 
 ## Roadmap
 
+> The current roadmap features are all implemented. If you have any ideas for futuren improvements, please open 
+> a feature request ticket. Thanks!
+
 These features/enhancements will be added in future releases:
 
 - ~~Add `findOrFail` methods to each repository that has a `find` method. These will throw an exception when there is no result instead of returning `NULL`.~~ ✔️
 - ~~Change the static methods and properties in the transformers to normal methods and properties and use dependency injection for using them in the repositories. This will allow them to be overwritten by the end user if needed.~~ ✔️
 - ~~Implement own versions for the `Str::snakeCase()` and `Str::camelCase()` methods, so we can remove the dependency on `illuminate/support`. That package adds too much that we don't use.~~ ✔️
-- Split up repositories that use more than one Transformer, they obviously don't belong together. `OrderRepository` is an exception to this, but the transformers for all these should be combined into one transformer.
+- ~~Split up repositories that use more than one Transformer, they obviously don't belong together. `OrderRepository` is an exception to this, but the transformers for all these should be combined into one transformer.~~ ✔️
 
 ## License
 
