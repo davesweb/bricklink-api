@@ -3,6 +3,7 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use Davesweb\BrinklinkApi\Enums\Direction;
 use Davesweb\BrinklinkApi\ValueObjects\Feedback;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
@@ -10,17 +11,14 @@ use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 
 class FeedbackRepository extends BaseRepository
 {
-    public const DIRECTION_IN  = 'in';
-    public const DIRECTION_OUT = 'out';
-
     public function __construct(BricklinkGateway $gateway, FeedbackTransformer $transformer)
     {
         parent::__construct($gateway, $transformer);
     }
 
-    public function index(string $direction = self::DIRECTION_IN): iterable
+    public function index(?Direction $direction = null): iterable
     {
-        $uri = uri('feedback', [], ['direction' => $direction]);
+        $uri = uri('feedback', [], ['direction' => $direction ? (string) $direction : Direction::default()]);
 
         $response = $this->gateway->get($uri);
 
