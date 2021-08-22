@@ -3,6 +3,9 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use Davesweb\BrinklinkApi\Enums\ItemType;
+use Davesweb\BrinklinkApi\Enums\GuideType;
+use Davesweb\BrinklinkApi\Enums\NewOrUsed;
 use Davesweb\BrinklinkApi\ValueObjects\PriceGuide;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
@@ -17,22 +20,22 @@ class PriceGuideRepository extends BaseRepository
 
     public function find(
         string $number,
-        string $type = 'part',
+        ?ItemType $type = null,
         ?int $colorId = null,
-        string $guideType = 'stock',
-        string $newOrUsed = 'N',
+        ?GuideType $guideType = null,
+        ?NewOrUsed $newOrUsed = null,
         ?string $countryCode = null,
         ?string $region = null,
         ?string $currencyCode = null,
         string $vat = 'N',
     ): ?PriceGuide {
         $uri = uri('/items/{type}/{number}/price', [
-            'type'   => $type,
+            'type'   => $type ? (string) $type : ItemType::default(),
             'number' => $number,
         ], [
             'color_id'      => $colorId,
-            'guide_type'    => $guideType,
-            'new_or_used'   => $newOrUsed,
+            'guide_type'    => $guideType ? (string) $guideType : (string) GuideType::default(),
+            'new_or_used'   => $newOrUsed ? (string) $newOrUsed : (string) NewOrUsed::default(),
             'country_code'  => $countryCode,
             'region'        => $region,
             'currency_code' => $currencyCode,
@@ -53,10 +56,10 @@ class PriceGuideRepository extends BaseRepository
 
     public function findOrFail(
         string $number,
-        string $type = 'part',
+        ?ItemType $type = null,
         ?int $colorId = null,
-        string $guideType = 'stock',
-        string $newOrUsed = 'N',
+        ?GuideType $guideType = null,
+        ?NewOrUsed $newOrUsed = null,
         ?string $countryCode = null,
         ?string $region = null,
         ?string $currencyCode = null,
