@@ -18,7 +18,7 @@ class FeedbackRepository extends BaseRepository
 
     public function index(?Direction $direction = null): iterable
     {
-        $uri = uri('feedback', [], ['direction' => $direction ? (string) $direction : Direction::default()]);
+        $uri = uri('feedback', [], ['direction' => $direction ? (string) $direction : (string) Direction::default()]);
 
         $response = $this->gateway->get($uri);
 

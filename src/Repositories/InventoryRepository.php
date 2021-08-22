@@ -3,7 +3,9 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
-use function Davesweb\param;
+use Davesweb\BrinklinkApi\Enums\Id;
+use Davesweb\BrinklinkApi\Enums\ItemType;
+use Davesweb\BrinklinkApi\Enums\InventoryStatus;
 use Davesweb\BrinklinkApi\ValueObjects\Inventory;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
@@ -17,16 +19,16 @@ class InventoryRepository extends BaseRepository
     }
 
     public function index(
-        string|array|null $itemTypes = null,
-        string|array|null $statuses = null,
-        int|array|null $categoryIds = null,
-        int|array|null $colorIds = null
+        ?ItemType $itemTypes = null,
+        ?InventoryStatus $status = null,
+        ?Id $categoryIds = null,
+        ?Id $colorIds = null
     ): iterable {
         $uri = uri('inventories', [], [
-            'item_types'  => param($itemTypes),
-            'status'      => param($statuses),
-            'category_id' => param($categoryIds),
-            'color_id'    => param($colorIds),
+            'item_types'  => $itemTypes ? (string) $itemTypes : (string) ItemType::default(),
+            'status'      => $status ? (string) $status : (string) InventoryStatus::default(),
+            'category_id' => $categoryIds ? (string) $categoryIds : (string) Id::default(),
+            'color_id'    => $colorIds ? (string) $colorIds : (string) Id::default(),
         ]);
 
         $response    = $this->gateway->get($uri);
