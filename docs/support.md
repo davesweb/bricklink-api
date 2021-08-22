@@ -7,6 +7,6 @@ support over on [Patreon](https://www.patreon.com/davesweb), it's really appreci
 
 ---
 <div style="overflow:auto;">
-    <div style="float: left;"><a href="support.html">&laquo; Support</a></div>
+    <div style="float: left;"><a href="laravel.html">&laquo; Laravel</a></div>
     <div style="float: right;"> </div>
 </div>

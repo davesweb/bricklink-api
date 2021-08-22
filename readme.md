@@ -104,15 +104,15 @@ To run CS fixer on the entire project, run `composer cs-fixer`.
 
 ## Roadmap
 
-> The current roadmap features are all implemented. If you have any ideas for futuren improvements, please open 
-> a feature request ticket. Thanks!
-
 These features/enhancements will be added in future releases:
 
-- ~~Add `findOrFail` methods to each repository that has a `find` method. These will throw an exception when there is no result instead of returning `NULL`.~~ ✔️
-- ~~Change the static methods and properties in the transformers to normal methods and properties and use dependency injection for using them in the repositories. This will allow them to be overwritten by the end user if needed.~~ ✔️
-- ~~Implement own versions for the `Str::snakeCase()` and `Str::camelCase()` methods, so we can remove the dependency on `illuminate/support`. That package adds too much that we don't use.~~ ✔️
-- ~~Split up repositories that use more than one Transformer, they obviously don't belong together. `OrderRepository` is an exception to this, but the transformers for all these should be combined into one transformer.~~ ✔️
+- Support for PHP 8.1
+- Add constants  for the parameters that have a defined set of possible values, like the direction parameter on orders 
+  for the PHP 8.0 version.
+- Add Enums for the parameters that have a defined set of possible values, like the direction parameter on orders for 
+  the PHP 8.1 version.
+- Validate the values on parameters.
+- Finish documentation about repositories.
 
 ## License
 
