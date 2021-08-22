@@ -3,7 +3,8 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
-use function Davesweb\param;
+use Davesweb\BrinklinkApi\Enums\Direction;
+use Davesweb\BrinklinkApi\Enums\CouponStatus;
 use Davesweb\BrinklinkApi\ValueObjects\Coupon;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
@@ -11,19 +12,16 @@ use Davesweb\BrinklinkApi\Transformers\CouponTransformer;
 
 class CouponRepository extends BaseRepository
 {
-    public const DIRECTION_IN  = 'in';
-    public const DIRECTION_OUT = 'out';
-
     public function __construct(BricklinkGateway $gateway, CouponTransformer $transformer)
     {
         parent::__construct($gateway, $transformer);
     }
 
-    public function index(string $direction = self::DIRECTION_OUT, string|array|null $statuses = null): iterable
+    public function index(?Direction $direction = null, ?CouponStatus $status = null): iterable
     {
         $uri = uri('coupons', [], [
-            'direction' => $direction,
-            'status'    => param($statuses),
+            'direction' => $direction ? (string) $direction : (string) Direction::default(),
+            'status'    => $status ? (string) $status : (string) CouponStatus::default(),
         ]);
 
         $response = $this->gateway->get($uri);
