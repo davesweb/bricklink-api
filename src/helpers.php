@@ -17,19 +17,9 @@ if (!function_exists('uri')) {
     }
 }
 
-if (!function_exists('param')) {
-    function param(mixed $values, ?string $paramName = null): ?string
+if (!function_exists('toString')) {
+    function toString(mixed $stringable, mixed $default = null): ?string
     {
-        if (null === $values) {
-            return null;
-        }
-
-        if (is_array($values)) {
-            $value = implode(',', $values);
-        } else {
-            $value = $values;
-        }
-
-        return null !== $paramName ? $paramName . '=' . $value : $value;
+        return $stringable !== null ? (string) $stringable : ($default !== null ? (string) $default : null);
     }
 }

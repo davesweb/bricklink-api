@@ -2,6 +2,7 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\toString;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\Enums\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
@@ -17,7 +18,7 @@ class SupersetRepository extends BaseRepository
     public function index(string $number, ?ItemType $type = null, ?int $colorId = null): iterable
     {
         $uri = uri('/items/{type}/{number}/supersets', [
-            'type'     => $type ? (string) $type : ItemType::default(),
+            'type'     => toString($type, ItemType::default()),
             'number'   => $number,
             'color_id' => $colorId,
         ]);

@@ -2,6 +2,7 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\toString;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\Enums\Direction;
 use Davesweb\BrinklinkApi\Enums\OrderStatus;
@@ -42,8 +43,8 @@ class OrderRepository extends BaseRepository
     public function index(?Direction $direction = null, ?OrderStatus $statuses = null, bool $filed = false): iterable
     {
         $uri = uri('orders', [], [
-            'direction' => $direction ? (string) $direction : Direction::default(),
-            'status'    => $statuses ? (string) $statuses : OrderStatus::default(),
+            'direction' => toString($direction, Direction::default()),
+            'status'    => toString($statuses, OrderStatus::default()),
             'filed'     => $filed ? 'true' : 'false',
         ]);
 

@@ -2,6 +2,7 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\toString;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\Enums\ItemType;
 use Davesweb\BrinklinkApi\ValueObjects\Mapping;
@@ -18,7 +19,7 @@ class MappingRepository extends BaseRepository
     public function getElementId(string $number, ?ItemType $type = null, ?int $colorId = null): ?Mapping
     {
         $uri = uri('/item_mapping/{type}/{number}', [
-            'type'   => $type ? (string) $type : ItemType::default(),
+            'type'   => toString($type, ItemType::default()),
             'number' => $number,
         ], [
             'color_id' => $colorId,

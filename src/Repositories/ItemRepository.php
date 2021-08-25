@@ -2,6 +2,7 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\toString;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\Enums\ItemType;
 use Davesweb\BrinklinkApi\ValueObjects\Item;
@@ -27,7 +28,7 @@ class ItemRepository extends BaseRepository
     public function find(string $number, ?ItemType $type = null): ?Item
     {
         $uri = uri('/items/{type}/{number}', [
-            'type'   => $type ? (string) $type : ItemType::default(),
+            'type'   => toString($type, ItemType::default()),
             'number' => $number,
         ]);
 

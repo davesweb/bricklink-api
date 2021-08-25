@@ -2,6 +2,7 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\toString;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\Enums\Id;
 use Davesweb\BrinklinkApi\Enums\ItemType;
@@ -25,10 +26,10 @@ class InventoryRepository extends BaseRepository
         ?Id $colorIds = null
     ): iterable {
         $uri = uri('inventories', [], [
-            'item_types'  => $itemTypes ? (string) $itemTypes : (string) ItemType::default(),
-            'status'      => $status ? (string) $status : (string) InventoryStatus::default(),
-            'category_id' => $categoryIds ? (string) $categoryIds : (string) Id::default(),
-            'color_id'    => $colorIds ? (string) $colorIds : (string) Id::default(),
+            'item_types'  => toString($itemTypes, ItemType::default()),
+            'status'      => toString($status, InventoryStatus::default()),
+            'category_id' => toString($categoryIds, Id::default()),
+            'color_id'    => toString($colorIds, Id::default()),
         ]);
 
         $response    = $this->gateway->get($uri);

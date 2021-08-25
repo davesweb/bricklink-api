@@ -2,6 +2,7 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
+use function Davesweb\toString;
 use function Davesweb\uri;
 use Davesweb\BrinklinkApi\Enums\ItemType;
 use Davesweb\BrinklinkApi\Enums\GuideType;
@@ -34,8 +35,8 @@ class PriceGuideRepository extends BaseRepository
             'number' => $number,
         ], [
             'color_id'      => $colorId,
-            'guide_type'    => $guideType ? (string) $guideType : (string) GuideType::default(),
-            'new_or_used'   => $newOrUsed ? (string) $newOrUsed : (string) NewOrUsed::default(),
+            'guide_type'    => toString($guideType, GuideType::default()),
+            'new_or_used'   => toString($newOrUsed, NewOrUsed::default()),
             'country_code'  => $countryCode,
             'region'        => $region,
             'currency_code' => $currencyCode,
