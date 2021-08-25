@@ -20,6 +20,6 @@ if (!function_exists('uri')) {
 if (!function_exists('toString')) {
     function toString(mixed $stringable, mixed $default = null): ?string
     {
-        return $stringable !== null ? (string) $stringable : ($default !== null ? (string) $default : null);
+        return null !== $stringable ? (string) $stringable : (null !== $default ? (string) $default : null);
     }
 }

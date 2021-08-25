@@ -2,8 +2,8 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
-use function Davesweb\toString;
 use function Davesweb\uri;
+use function Davesweb\toString;
 use Davesweb\BrinklinkApi\Enums\ItemType;
 use Davesweb\BrinklinkApi\ValueObjects\Item;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;

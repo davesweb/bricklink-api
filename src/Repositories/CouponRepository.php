@@ -2,8 +2,8 @@
 
 namespace Davesweb\BrinklinkApi\Repositories;
 
-use function Davesweb\toString;
 use function Davesweb\uri;
+use function Davesweb\toString;
 use Davesweb\BrinklinkApi\Enums\Direction;
 use Davesweb\BrinklinkApi\Enums\CouponStatus;
 use Davesweb\BrinklinkApi\ValueObjects\Coupon;
