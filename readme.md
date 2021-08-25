@@ -93,23 +93,43 @@ var_dump($color);
 Please read the [documentation](https://davesweb.github.io/bricklink-api/) for more detailed and advanced examples 
 of how to use this package.
 
+## Docker
+
+This package contains a Docker setup te easily run the tests and CS fixer.
+
+To build the docker image, run:
+
+`docker-compose build`
+
+To start the container, run: 
+
+`docker-compose up -d`
+
+Logging in to the docker container:
+
+`docker-compose exec app bash`
+
 ## Tests
 
-To run the test suite, run `composer test`. Tests are created using PHPUnit, so you may use PHPUnit and it's options
-directly to run the tests.
+To run the test suite, run `composer test` from inside the docker container, or `docker-compose exec app composer test` 
+from outside the docker container. Tests are created using PHPUnit, so you may use PHPUnit and it's options directly to 
+run the tests.
 
 ## CS Fixer
 
-To run CS fixer on the entire project, run `composer cs-fixer`.
+To run CS fixer on the entire project, run `composer cs-fixer` from inside the container, or 
+`docker-compose exec app compose cs-fixer` from outside the docker container. You can also run CS fixer directly 
+(`php vendor/bin/php-cs-fixer fix`) and add your custom arguments. Keep in mind that the contributing guide 
+requires you to run CS Fixer with the configuration in this package.
 
 ## Roadmap
 
 These features/enhancements will be added in future releases:
 
 - Support for PHP 8.1.
-- ~~Validate the values on parameters.~~
+- ~~Validate the values on parameters.~~ ✔️
 - Finish documentation about repositories.
-- Add docker setup for local development.
+- ~~Add docker setup for local development.~~ ✔️
 
 ## License
 
