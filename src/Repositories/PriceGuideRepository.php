@@ -3,8 +3,12 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use function Davesweb\toString;
 use Davesweb\BrinklinkApi\ValueObjects\PriceGuide;
+use Davesweb\BrinklinkApi\ParameterObjects\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\ParameterObjects\GuideType;
+use Davesweb\BrinklinkApi\ParameterObjects\NewOrUsed;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\PriceGuideTransformer;
 
@@ -17,22 +21,22 @@ class PriceGuideRepository extends BaseRepository
 
     public function find(
         string $number,
-        string $type = 'part',
+        ?ItemType $type = null,
         ?int $colorId = null,
-        string $guideType = 'stock',
-        string $newOrUsed = 'N',
+        ?GuideType $guideType = null,
+        ?NewOrUsed $newOrUsed = null,
         ?string $countryCode = null,
         ?string $region = null,
         ?string $currencyCode = null,
         string $vat = 'N',
     ): ?PriceGuide {
         $uri = uri('/items/{type}/{number}/price', [
-            'type'   => $type,
+            'type'   => $type ? (string) $type : ItemType::default(),
             'number' => $number,
         ], [
             'color_id'      => $colorId,
-            'guide_type'    => $guideType,
-            'new_or_used'   => $newOrUsed,
+            'guide_type'    => toString($guideType, GuideType::default()),
+            'new_or_used'   => toString($newOrUsed, NewOrUsed::default()),
             'country_code'  => $countryCode,
             'region'        => $region,
             'currency_code' => $currencyCode,
@@ -53,10 +57,10 @@ class PriceGuideRepository extends BaseRepository
 
     public function findOrFail(
         string $number,
-        string $type = 'part',
+        ?ItemType $type = null,
         ?int $colorId = null,
-        string $guideType = 'stock',
-        string $newOrUsed = 'N',
+        ?GuideType $guideType = null,
+        ?NewOrUsed $newOrUsed = null,
         ?string $countryCode = null,
         ?string $region = null,
         ?string $currencyCode = null,

@@ -3,6 +3,8 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use function Davesweb\toString;
+use Davesweb\BrinklinkApi\ParameterObjects\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\SupersetTransformer;
 
@@ -13,10 +15,10 @@ class SupersetRepository extends BaseRepository
         parent::__construct($gateway, $transformer);
     }
 
-    public function index(string $number, string $type = 'part', ?int $colorId = null): iterable
+    public function index(string $number, ?ItemType $type = null, ?int $colorId = null): iterable
     {
         $uri = uri('/items/{type}/{number}/supersets', [
-            'type'     => $type,
+            'type'     => toString($type, ItemType::default()),
             'number'   => $number,
             'color_id' => $colorId,
         ]);

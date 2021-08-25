@@ -3,6 +3,7 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use Davesweb\BrinklinkApi\ParameterObjects\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\SubsetTransformer;
 
@@ -15,7 +16,7 @@ class SubsetRepository extends BaseRepository
 
     public function index(
         string $number,
-        string $type = 'part',
+        ?ItemType $type = null,
         ?int $colorId = null,
         ?bool $box = null,
         ?bool $instruction = null,
@@ -23,7 +24,7 @@ class SubsetRepository extends BaseRepository
         ?bool $breakSubsets = null,
     ): iterable {
         $uri = uri('/items/{type}/{number}/subsets', [
-            'type'   => $type,
+            'type'   => $type ? (string) $type : ItemType::default(),
             'number' => $number,
         ], [
             'color_id'       => $colorId,

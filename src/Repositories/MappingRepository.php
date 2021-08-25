@@ -3,7 +3,9 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use function Davesweb\toString;
 use Davesweb\BrinklinkApi\ValueObjects\Mapping;
+use Davesweb\BrinklinkApi\ParameterObjects\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\MappingTransformer;
 
@@ -14,10 +16,10 @@ class MappingRepository extends BaseRepository
         parent::__construct($gateway, $transformer);
     }
 
-    public function getElementId(string $number, string $type = 'part', ?int $colorId = null): ?Mapping
+    public function getElementId(string $number, ?ItemType $type = null, ?int $colorId = null): ?Mapping
     {
         $uri = uri('/item_mapping/{type}/{number}', [
-            'type'   => strtoupper($type),
+            'type'   => toString($type, ItemType::default()),
             'number' => $number,
         ], [
             'color_id' => $colorId,

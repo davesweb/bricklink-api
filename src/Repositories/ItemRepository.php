@@ -3,7 +3,9 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
+use function Davesweb\toString;
 use Davesweb\BrinklinkApi\ValueObjects\Item;
+use Davesweb\BrinklinkApi\ParameterObjects\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\ItemTransformer;
@@ -23,10 +25,10 @@ class ItemRepository extends BaseRepository
         $this->knownColorTransformer = $knownColorTransformer;
     }
 
-    public function find(string $number, string $type = 'part'): ?Item
+    public function find(string $number, ?ItemType $type = null): ?Item
     {
         $uri = uri('/items/{type}/{number}', [
-            'type'   => $type,
+            'type'   => toString($type, ItemType::default()),
             'number' => $number,
         ]);
 
@@ -42,7 +44,7 @@ class ItemRepository extends BaseRepository
         return $item;
     }
 
-    public function findOrFail(string $number, string $type = 'part'): Item
+    public function findOrFail(string $number, ?ItemType $type = null): Item
     {
         return $this->find($number, $type) ?? throw NotFoundException::forId($number);
     }
@@ -72,10 +74,10 @@ class ItemRepository extends BaseRepository
         return $this->findItemImage($item, $colorId) ?? throw NotFoundException::forId($item->number);
     }
 
-    public function knownColors(string $number, string $type = 'part'): iterable
+    public function knownColors(string $number, ?ItemType $type = null): iterable
     {
         $uri = uri('/items/{type}/{number}/colors', [
-            'type'   => $type,
+            'type'   => $type ? (string) $type : ItemType::default(),
             'number' => $number,
         ]);
 

@@ -106,13 +106,10 @@ To run CS fixer on the entire project, run `composer cs-fixer`.
 
 These features/enhancements will be added in future releases:
 
-- Support for PHP 8.1
-- Add constants  for the parameters that have a defined set of possible values, like the direction parameter on orders 
-  for the PHP 8.0 version.
-- Add Enums for the parameters that have a defined set of possible values, like the direction parameter on orders for 
-  the PHP 8.1 version.
-- Validate the values on parameters.
+- Support for PHP 8.1.
+- ~~Validate the values on parameters.~~
 - Finish documentation about repositories.
+- Add docker setup for local development.
 
 ## License
 

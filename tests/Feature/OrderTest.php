@@ -17,10 +17,12 @@ use Davesweb\BrinklinkApi\ValueObjects\Shipping;
 use Davesweb\BrinklinkApi\ValueObjects\OrderItem;
 use Davesweb\BrinklinkApi\ValueObjects\OrderMessage;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderStatus;
 use Davesweb\BrinklinkApi\Repositories\OrderRepository;
 use Davesweb\BrinklinkApi\Transformers\OrderTransformer;
 use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 use Davesweb\BrinklinkApi\Transformers\OrderItemTransformer;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderPaymentStatus;
 use Davesweb\BrinklinkApi\Transformers\OrderMessageTransformer;
 
 /**
@@ -152,7 +154,7 @@ class OrderTest extends TestCase
         $gateway    = new TestBricklinkGateway($response);
         $repository = new OrderRepository($gateway, new OrderTransformer(), new OrderItemTransformer(), new OrderMessageTransformer(), new FeedbackTransformer());
 
-        $result = $repository->updateStatus(new Order(orderId: 1234), 'SHIPPED');
+        $result = $repository->updateStatus(new Order(orderId: 1234), OrderStatus::make()->shipped());
 
         $this->assertTrue($result);
     }
@@ -164,7 +166,7 @@ class OrderTest extends TestCase
         $gateway    = new TestBricklinkGateway($response);
         $repository = new OrderRepository($gateway, new OrderTransformer(), new OrderItemTransformer(), new OrderMessageTransformer(), new FeedbackTransformer());
 
-        $result = $repository->updatePaymentStatus(new Order(orderId: 1234), 'PAID');
+        $result = $repository->updatePaymentStatus(new Order(orderId: 1234), OrderPaymentStatus::make()->received());
 
         $this->assertTrue($result);
     }

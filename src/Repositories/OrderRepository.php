@@ -3,13 +3,16 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
-use function Davesweb\param;
+use function Davesweb\toString;
 use Davesweb\BrinklinkApi\ValueObjects\Order;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\ParameterObjects\Direction;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderStatus;
 use Davesweb\BrinklinkApi\Transformers\OrderTransformer;
 use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 use Davesweb\BrinklinkApi\Transformers\OrderItemTransformer;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderPaymentStatus;
 use Davesweb\BrinklinkApi\Transformers\OrderMessageTransformer;
 
 class OrderRepository extends BaseRepository
@@ -37,11 +40,11 @@ class OrderRepository extends BaseRepository
         $this->feedbackTransformer = $feedbackTransformer;
     }
 
-    public function index(string $direction = self::DIRECTION_IN, string|array|null $statuses = null, bool $filed = false): iterable
+    public function index(?Direction $direction = null, ?OrderStatus $statuses = null, bool $filed = false): iterable
     {
         $uri = uri('orders', [], [
-            'direction' => $direction,
-            'status'    => param($statuses),
+            'direction' => toString($direction, Direction::default()),
+            'status'    => toString($statuses, OrderStatus::default()),
             'filed'     => $filed ? 'true' : 'false',
         ]);
 
@@ -139,21 +142,21 @@ class OrderRepository extends BaseRepository
         return $updatedOrder;
     }
 
-    public function updateStatus(Order $order, string $newStatus): bool
+    public function updateStatus(Order $order, OrderStatus $newStatus): bool
     {
         $response = $this->gateway->put(
             uri('/orders/{id}/status', ['id' => $order->orderId]),
-            ['field' => 'status', 'value' => $newStatus],
+            ['field' => 'status', 'value' => (string) $newStatus],
         );
 
         return $response->isSuccessful();
     }
 
-    public function updatePaymentStatus(Order $order, string $newStatus): bool
+    public function updatePaymentStatus(Order $order, OrderPaymentStatus $newStatus): bool
     {
         $response = $this->gateway->put(
             uri('/orders/{id}/status', ['id' => $order->orderId]),
-            ['field' => 'payment_status', 'value' => $newStatus],
+            ['field' => 'payment_status', 'value' => (string) $newStatus],
         );
 
         return $response->isSuccessful();
