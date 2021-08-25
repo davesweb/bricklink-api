@@ -97,7 +97,11 @@ of how to use this package.
 
 This package contains a Docker setup te easily run the tests and CS fixer.
 
-To build the docker image, run:
+To build the docker image, copy the docker compose file:
+
+`cp docker-compose.yml.dist docker-compose.yml`
+
+Then run:
 
 `docker-compose build`
 
