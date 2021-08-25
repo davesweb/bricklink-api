@@ -118,7 +118,7 @@ run the tests.
 ## CS Fixer
 
 To run CS fixer on the entire project, run `composer cs-fixer` from inside the container, or 
-`docker-compose exec app compose cs-fixer` from outside the docker container. You can also run CS fixer directly 
+`docker-compose exec app composer cs-fixer` from outside the docker container. You can also run CS fixer directly 
 (`php vendor/bin/php-cs-fixer fix`) and add your custom arguments. Keep in mind that the contributing guide 
 requires you to run CS Fixer with the configuration in this package.
 
