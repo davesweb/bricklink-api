@@ -4,11 +4,11 @@ namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
 use function Davesweb\toString;
-use Davesweb\BrinklinkApi\Enums\ItemType;
-use Davesweb\BrinklinkApi\Enums\GuideType;
-use Davesweb\BrinklinkApi\Enums\NewOrUsed;
 use Davesweb\BrinklinkApi\ValueObjects\PriceGuide;
+use Davesweb\BrinklinkApi\ParameterObjects\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\ParameterObjects\GuideType;
+use Davesweb\BrinklinkApi\ParameterObjects\NewOrUsed;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\PriceGuideTransformer;
 

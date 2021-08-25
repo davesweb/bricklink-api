@@ -3,7 +3,7 @@
 namespace Davesweb\BrinklinkApi\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;
-use Davesweb\BrinklinkApi\Enums\GuideType;
+use Davesweb\BrinklinkApi\ParameterObjects\GuideType;
 use Davesweb\BrinklinkApi\Exceptions\InvalidGuideTypeException;
 
 /**

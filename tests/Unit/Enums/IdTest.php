@@ -3,7 +3,7 @@
 namespace Davesweb\BrinklinkApi\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;
-use Davesweb\BrinklinkApi\Enums\Id;
+use Davesweb\BrinklinkApi\ParameterObjects\Id;
 
 /**
  * @internal

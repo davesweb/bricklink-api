@@ -4,11 +4,11 @@ namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
 use function Davesweb\toString;
-use Davesweb\BrinklinkApi\Enums\Direction;
-use Davesweb\BrinklinkApi\Enums\CouponStatus;
 use Davesweb\BrinklinkApi\ValueObjects\Coupon;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\ParameterObjects\Direction;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
+use Davesweb\BrinklinkApi\ParameterObjects\CouponStatus;
 use Davesweb\BrinklinkApi\Transformers\CouponTransformer;
 
 class CouponRepository extends BaseRepository

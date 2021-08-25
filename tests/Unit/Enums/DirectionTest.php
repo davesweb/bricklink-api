@@ -3,7 +3,7 @@
 namespace Davesweb\BrinklinkApi\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;
-use Davesweb\BrinklinkApi\Enums\Direction;
+use Davesweb\BrinklinkApi\ParameterObjects\Direction;
 use Davesweb\BrinklinkApi\Exceptions\InvalidDirectionException;
 
 /**

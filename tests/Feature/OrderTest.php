@@ -5,7 +5,6 @@ namespace Davesweb\BrinklinkApi\Tests\Feature;
 use DateTime;
 use Davesweb\BrinklinkApi\Tests\TestCase;
 use Davesweb\BrinklinkApi\BricklinkResponse;
-use Davesweb\BrinklinkApi\Enums\OrderStatus;
 use Davesweb\BrinklinkApi\ValueObjects\Cost;
 use Davesweb\BrinklinkApi\ValueObjects\Item;
 use Davesweb\BrinklinkApi\ValueObjects\Name;
@@ -16,13 +15,14 @@ use Davesweb\BrinklinkApi\ValueObjects\Payment;
 use Davesweb\BrinklinkApi\ValueObjects\Feedback;
 use Davesweb\BrinklinkApi\ValueObjects\Shipping;
 use Davesweb\BrinklinkApi\ValueObjects\OrderItem;
-use Davesweb\BrinklinkApi\Enums\OrderPaymentStatus;
 use Davesweb\BrinklinkApi\ValueObjects\OrderMessage;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderStatus;
 use Davesweb\BrinklinkApi\Repositories\OrderRepository;
 use Davesweb\BrinklinkApi\Transformers\OrderTransformer;
 use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 use Davesweb\BrinklinkApi\Transformers\OrderItemTransformer;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderPaymentStatus;
 use Davesweb\BrinklinkApi\Transformers\OrderMessageTransformer;
 
 /**

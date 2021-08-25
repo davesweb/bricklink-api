@@ -3,7 +3,7 @@
 namespace Davesweb\BrinklinkApi\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;
-use Davesweb\BrinklinkApi\Enums\CouponStatus;
+use Davesweb\BrinklinkApi\ParameterObjects\CouponStatus;
 
 /**
  * @internal

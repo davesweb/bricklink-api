@@ -3,7 +3,7 @@
 namespace Davesweb\BrinklinkApi\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;
-use Davesweb\BrinklinkApi\Enums\OrderStatus;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderStatus;
 
 /**
  * @internal

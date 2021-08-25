@@ -4,12 +4,12 @@ namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
 use function Davesweb\toString;
-use Davesweb\BrinklinkApi\Enums\Id;
-use Davesweb\BrinklinkApi\Enums\ItemType;
-use Davesweb\BrinklinkApi\Enums\InventoryStatus;
+use Davesweb\BrinklinkApi\ParameterObjects\Id;
 use Davesweb\BrinklinkApi\ValueObjects\Inventory;
+use Davesweb\BrinklinkApi\ParameterObjects\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
+use Davesweb\BrinklinkApi\ParameterObjects\InventoryStatus;
 use Davesweb\BrinklinkApi\Transformers\InventoryTransformer;
 
 class InventoryRepository extends BaseRepository

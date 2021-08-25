@@ -4,15 +4,15 @@ namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
 use function Davesweb\toString;
-use Davesweb\BrinklinkApi\Enums\Direction;
-use Davesweb\BrinklinkApi\Enums\OrderStatus;
 use Davesweb\BrinklinkApi\ValueObjects\Order;
-use Davesweb\BrinklinkApi\Enums\OrderPaymentStatus;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\ParameterObjects\Direction;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderStatus;
 use Davesweb\BrinklinkApi\Transformers\OrderTransformer;
 use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 use Davesweb\BrinklinkApi\Transformers\OrderItemTransformer;
+use Davesweb\BrinklinkApi\ParameterObjects\OrderPaymentStatus;
 use Davesweb\BrinklinkApi\Transformers\OrderMessageTransformer;
 
 class OrderRepository extends BaseRepository

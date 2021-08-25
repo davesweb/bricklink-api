@@ -1,6 +1,6 @@
 <?php
 
-namespace Davesweb\BrinklinkApi\Enums;
+namespace Davesweb\BrinklinkApi\ParameterObjects;
 
 use Davesweb\BrinklinkApi\Exceptions\InvalidGuideTypeException;
 

@@ -3,7 +3,7 @@
 namespace Davesweb\BrinklinkApi\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;
-use Davesweb\BrinklinkApi\Enums\NewOrUsed;
+use Davesweb\BrinklinkApi\ParameterObjects\NewOrUsed;
 use Davesweb\BrinklinkApi\Exceptions\InvalidNewOrUsedException;
 
 /**

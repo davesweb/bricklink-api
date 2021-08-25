@@ -3,9 +3,9 @@
 namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
-use Davesweb\BrinklinkApi\Enums\Direction;
 use Davesweb\BrinklinkApi\ValueObjects\Feedback;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
+use Davesweb\BrinklinkApi\ParameterObjects\Direction;
 use Davesweb\BrinklinkApi\Exceptions\NotFoundException;
 use Davesweb\BrinklinkApi\Transformers\FeedbackTransformer;
 

@@ -4,8 +4,8 @@ namespace Davesweb\BrinklinkApi\Repositories;
 
 use function Davesweb\uri;
 use function Davesweb\toString;
-use Davesweb\BrinklinkApi\Enums\ItemType;
 use Davesweb\BrinklinkApi\ValueObjects\Mapping;
+use Davesweb\BrinklinkApi\ParameterObjects\ItemType;
 use Davesweb\BrinklinkApi\Contracts\BricklinkGateway;
 use Davesweb\BrinklinkApi\Transformers\MappingTransformer;
 
