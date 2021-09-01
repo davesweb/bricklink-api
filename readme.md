@@ -119,7 +119,10 @@ To run the test suite, run `composer test` from inside the docker container, or 
 from outside the docker container. Tests are created using PHPUnit, so you may use PHPUnit and it's options directly to 
 run the tests.
 
-## CS Fixer
+## Code style
+
+This project uses [CS Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to enforce a unified code style. The 
+configuration for this can be found in the `.php-cs-fixer.php` file.
 
 To run CS fixer on the entire project, run `composer cs-fixer` from inside the container, or 
 `docker-compose exec app composer cs-fixer` from outside the docker container. You can also run CS fixer directly 
