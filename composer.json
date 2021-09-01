@@ -1,6 +1,7 @@
 {
     "name": "davesweb/bricklink-api",
     "description": "A PHP wrapper around the Bricklink API",
+    "keywords": ["API", "Bricklink", "Lego", "PHP", "Bricks"],
     "type": "library",
     "require": {
         "php": "^8.0",
