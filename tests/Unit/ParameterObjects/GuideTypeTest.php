@@ -1,6 +1,6 @@
 <?php
 
-namespace Davesweb\BrinklinkApi\Tests\Unit\Enums;
+namespace Davesweb\BrinklinkApi\Tests\Unit\ParameterObjects;
 
 use PHPUnit\Framework\TestCase;
 use Davesweb\BrinklinkApi\ParameterObjects\GuideType;
