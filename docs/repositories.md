@@ -6,20 +6,21 @@ several repositories available that roughly mimic the Bricklink API structure.
 Each repository needs a `Gateway` object to connect to the API and at least one `Transformer` object
 to transform the data it received from the API.
 
-- [Category Repository](repositories/categories.html)
-- [Color Repository](repositories/colors.html)
-- [Coupon Repository](repositories/coupons.html)
-- [Feedback Repository](repositories/feedback.html)
-- [Inventories Repository](repositories/inventories.html)
-- [Items Repository](repositories/items.html)
-- [Mapping Repository](repositories/mapping.html)
-- [Members Repository](repositories/members.html)
-- [Notifications Repository](repositories/notifications.html)
-- [Order Repository](repositories/orders.html)
-- [Price Guide Repository](repositories/priceguide.html)
-- [Settings Repository](repositories/settings.html)
-- [Subset Repository](repositories/subsets.html)
-- [Superset Repository](repositories/superstes.html)
+Available repositories are:
+- Category Repository
+- Color Repository
+- Coupon Repository
+- Feedback Repository
+- Inventories Repository
+- Items Repository
+- Mapping Repository
+- Members Repository
+- Notifications Repository
+- Order Repository
+- Price Guide Repository
+- Settings Repository
+- Subset Repository
+- Superset Repository
  
 ---
 <div style="overflow:auto;">

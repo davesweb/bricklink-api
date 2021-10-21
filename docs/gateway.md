@@ -11,6 +11,25 @@ also free to use your own Guzzle setup (or any other implementation of the PSR-7
 This package provides a default `Bricklink` gateway. This gateway requires at least a `BricklinkConfig` object, but 
 it can be further customized by adding custom handler stacks or custom clients.
 
+### Default setup
+
+The default gateway setup contains everything you need to connect to the API.
+
+```php
+<?php
+
+use Davesweb\BrinklinkApi\Bricklink;
+use Davesweb\BrinklinkApi\BricklinkConfig;
+
+// Create the default config
+$config = new BricklinkConfig('consumerKey', 'consumerSecret', 'tokenValue', 'tokenSecret');
+
+// Create the default gateway
+$gateway = new Bricklink(config: $config);
+```
+
+After this the `$gateway` object can be used to initialize the repositories and use the API.
+
 ### Custom handler stack
 
 The only thing that is added to the handler stack for the Guzzle Client is the OAuth 1 handler. If you want to add 
