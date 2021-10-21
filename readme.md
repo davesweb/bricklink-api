@@ -4,8 +4,6 @@ A PHP SDK for the Bricklink API. This package provides an easy way to authentica
 requests directly against the Bricklink API. This package also provides some repositories for easier and object-oriented 
 communication with the Bricklink API.
 
-This package is still in an Alpha version, not every API call is tested. Use at your own risk for now.
-
 ## Installation
 
 `composer require davesweb/bricklink-api`
@@ -128,15 +126,6 @@ To run CS fixer on the entire project, run `composer cs-fixer` from inside the c
 `docker-compose exec app composer cs-fixer` from outside the docker container. You can also run CS fixer directly 
 (`php vendor/bin/php-cs-fixer fix`) and add your custom arguments. Keep in mind that the contributing guide 
 requires you to run CS Fixer with the configuration in this package.
-
-## Roadmap
-
-These features/enhancements will be added in future releases:
-
-- Support for PHP 8.1.
-- ~~Validate the values on parameters.~~ ✔️
-- Finish documentation about repositories.
-- ~~Add docker setup for local development.~~ ✔️
 
 ## License
 
