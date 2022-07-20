@@ -9,7 +9,7 @@ class Item
         public ?string $name = null,
         public ?string $type = null,
         public ?int $categoryId = null,
-        public ?string $alternateNumber = null,
+        public ?string $alternateNo = null,
         public ?string $imageUrl = null,
         public ?string $thumbnailUrl = null,
         public ?float $weight = null,
