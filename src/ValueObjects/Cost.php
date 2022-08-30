@@ -8,6 +8,8 @@ class Cost
         public ?string $currencyCode = null,
         public ?float $subtotal = null,
         public ?float $grandTotal = null,
+        public ?float $finalTotal = null,
+        public ?float $salestaxCollectedByBl = null,
         public ?float $etc1 = null,
         public ?float $etc2 = null,
         public ?float $insurance = null,
