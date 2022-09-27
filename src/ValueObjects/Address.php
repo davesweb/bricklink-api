@@ -13,6 +13,7 @@ class Address
         public ?string $city = null,
         public ?string $state = null,
         public ?string $postalCode = null,
+        public ?string $phoneNumber = null,
     ) {
     }
 }
