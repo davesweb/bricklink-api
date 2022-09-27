@@ -96,7 +96,9 @@ class OrderRepository extends BaseRepository
 
         $items = [];
 
-        foreach ($itemsResponse->getData() as $data) {
+        $orders = $itemsResponse->getData();
+        $orders = array_merge(...$orders);
+        foreach ($orders as $data) {
             $items[] = $this->itemTransformer->toObject($data);
         }
 
