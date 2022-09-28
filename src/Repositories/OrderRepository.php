@@ -95,11 +95,10 @@ class OrderRepository extends BaseRepository
         $itemsResponse = $this->gateway->get(uri('orders/{id}/items', ['id' => $order->orderId]));
 
         $items = [];
-
-        $orders = $itemsResponse->getData();
-        $orders = array_merge(...$orders);
-        foreach ($orders as $data) {
-            $items[] = $this->itemTransformer->toObject($data);
+        foreach ($itemsResponse->getData() as $key => $itemsDataSet) {
+            foreach ($itemsDataSet as $itemData) {
+                $items[$key][] = $this->itemTransformer->toObject($itemData);
+            }
         }
 
         return $items;
