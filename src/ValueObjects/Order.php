@@ -28,7 +28,7 @@ class Order
         public ?Shipping $shipping = null,
         public ?Cost $cost = null,
         public ?Cost $dispCost = null,
-        public ?bool $salesTaxCollectedByBl = null,
+        public ?bool $salestaxCollectedByBl = null,
         public ?bool $vatCollectedByBl = null,
         public ?iterable $items = null,
         public ?iterable $messages = null,

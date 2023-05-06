@@ -21,6 +21,7 @@ class OrderItem
         public ?string $remarks = null,
         public ?string $description = null,
         public ?float $weight = null,
+        public ?float $orderCost = null,
     ) {
     }
 }

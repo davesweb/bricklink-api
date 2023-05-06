@@ -7,6 +7,7 @@ use DateTime;
 class OrderMessage
 {
     public function __construct(
+        public ?string $messageID = null,
         public ?string $subject = null,
         public ?string $body = null,
         public ?string $from = null,
