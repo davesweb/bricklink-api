@@ -26,7 +26,7 @@ class InventoryRepository extends BaseRepository
         ?Id $colorIds = null
     ): iterable {
         $uri = uri('inventories', [], [
-            'item_types'  => toString($itemTypes, ItemType::default()),
+            'item_type'  => toString($itemTypes, ItemType::default()),
             'status'      => toString($status, InventoryStatus::default()),
             'category_id' => toString($categoryIds, Id::default()),
             'color_id'    => toString($colorIds, Id::default()),
